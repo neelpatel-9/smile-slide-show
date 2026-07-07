@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState } from "react";
-import { Star, Sparkles, ArrowUpRight } from "lucide-react";
+import { Star, Sparkles, ArrowUpRight, Award, Users } from "lucide-react";
 import { PageShell } from "@/components/SiteChrome";
 import { SlideToConfirm } from "@/components/SlideToConfirm";
 import { ExpandableServiceCard, type ServiceCardData } from "@/components/ExpandableServiceCard";
