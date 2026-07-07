@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as ReviewsRouteImport } from './routes/reviews'
+import { Route as FirstVisitRouteImport } from './routes/first-visit'
 import { Route as DenCareRouteImport } from './routes/den-care'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
@@ -27,6 +28,11 @@ const ServicesRoute = ServicesRouteImport.update({
 const ReviewsRoute = ReviewsRouteImport.update({
   id: '/reviews',
   path: '/reviews',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FirstVisitRoute = FirstVisitRouteImport.update({
+  id: '/first-visit',
+  path: '/first-visit',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DenCareRoute = DenCareRouteImport.update({
@@ -70,6 +76,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/den-care': typeof DenCareRoute
+  '/first-visit': typeof FirstVisitRoute
   '/reviews': typeof ReviewsRoute
   '/services': typeof ServicesRouteWithChildren
   '/services/dental-implants': typeof ServicesDentalImplantsRoute
@@ -81,6 +88,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/den-care': typeof DenCareRoute
+  '/first-visit': typeof FirstVisitRoute
   '/reviews': typeof ReviewsRoute
   '/services': typeof ServicesRouteWithChildren
   '/services/dental-implants': typeof ServicesDentalImplantsRoute
@@ -93,6 +101,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/den-care': typeof DenCareRoute
+  '/first-visit': typeof FirstVisitRoute
   '/reviews': typeof ReviewsRoute
   '/services': typeof ServicesRouteWithChildren
   '/services/dental-implants': typeof ServicesDentalImplantsRoute
@@ -106,6 +115,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/den-care'
+    | '/first-visit'
     | '/reviews'
     | '/services'
     | '/services/dental-implants'
@@ -117,6 +127,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/den-care'
+    | '/first-visit'
     | '/reviews'
     | '/services'
     | '/services/dental-implants'
@@ -128,6 +139,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/den-care'
+    | '/first-visit'
     | '/reviews'
     | '/services'
     | '/services/dental-implants'
@@ -140,6 +152,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
   DenCareRoute: typeof DenCareRoute
+  FirstVisitRoute: typeof FirstVisitRoute
   ReviewsRoute: typeof ReviewsRoute
   ServicesRoute: typeof ServicesRouteWithChildren
 }
@@ -158,6 +171,13 @@ declare module '@tanstack/react-router' {
       path: '/reviews'
       fullPath: '/reviews'
       preLoaderRoute: typeof ReviewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/first-visit': {
+      id: '/first-visit'
+      path: '/first-visit'
+      fullPath: '/first-visit'
+      preLoaderRoute: typeof FirstVisitRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/den-care': {
@@ -233,6 +253,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
   DenCareRoute: DenCareRoute,
+  FirstVisitRoute: FirstVisitRoute,
   ReviewsRoute: ReviewsRoute,
   ServicesRoute: ServicesRouteWithChildren,
 }
