@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as ReviewsRouteImport } from './routes/reviews'
 import { Route as FirstVisitRouteImport } from './routes/first-visit'
@@ -20,6 +21,11 @@ import { Route as ServicesSmileDesignRouteImport } from './routes/services.smile
 import { Route as ServicesRootCanalRouteImport } from './routes/services.root-canal'
 import { Route as ServicesDentalImplantsRouteImport } from './routes/services.dental-implants'
 
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
@@ -79,6 +85,7 @@ export interface FileRoutesByFullPath {
   '/first-visit': typeof FirstVisitRoute
   '/reviews': typeof ReviewsRoute
   '/services': typeof ServicesRouteWithChildren
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/services/dental-implants': typeof ServicesDentalImplantsRoute
   '/services/root-canal': typeof ServicesRootCanalRoute
   '/services/smile-design': typeof ServicesSmileDesignRoute
@@ -91,6 +98,7 @@ export interface FileRoutesByTo {
   '/first-visit': typeof FirstVisitRoute
   '/reviews': typeof ReviewsRoute
   '/services': typeof ServicesRouteWithChildren
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/services/dental-implants': typeof ServicesDentalImplantsRoute
   '/services/root-canal': typeof ServicesRootCanalRoute
   '/services/smile-design': typeof ServicesSmileDesignRoute
@@ -104,6 +112,7 @@ export interface FileRoutesById {
   '/first-visit': typeof FirstVisitRoute
   '/reviews': typeof ReviewsRoute
   '/services': typeof ServicesRouteWithChildren
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/services/dental-implants': typeof ServicesDentalImplantsRoute
   '/services/root-canal': typeof ServicesRootCanalRoute
   '/services/smile-design': typeof ServicesSmileDesignRoute
@@ -118,6 +127,7 @@ export interface FileRouteTypes {
     | '/first-visit'
     | '/reviews'
     | '/services'
+    | '/sitemap.xml'
     | '/services/dental-implants'
     | '/services/root-canal'
     | '/services/smile-design'
@@ -130,6 +140,7 @@ export interface FileRouteTypes {
     | '/first-visit'
     | '/reviews'
     | '/services'
+    | '/sitemap.xml'
     | '/services/dental-implants'
     | '/services/root-canal'
     | '/services/smile-design'
@@ -142,6 +153,7 @@ export interface FileRouteTypes {
     | '/first-visit'
     | '/reviews'
     | '/services'
+    | '/sitemap.xml'
     | '/services/dental-implants'
     | '/services/root-canal'
     | '/services/smile-design'
@@ -155,10 +167,18 @@ export interface RootRouteChildren {
   FirstVisitRoute: typeof FirstVisitRoute
   ReviewsRoute: typeof ReviewsRoute
   ServicesRoute: typeof ServicesRouteWithChildren
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services': {
       id: '/services'
       path: '/services'
@@ -256,6 +276,7 @@ const rootRouteChildren: RootRouteChildren = {
   FirstVisitRoute: FirstVisitRoute,
   ReviewsRoute: ReviewsRoute,
   ServicesRoute: ServicesRouteWithChildren,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
