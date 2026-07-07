@@ -1,23 +1,37 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState } from "react";
-import { Star, Sparkles, Award, Users, ArrowUpRight } from "lucide-react";
+import { Star, Sparkles, ArrowUpRight } from "lucide-react";
 import { PageShell } from "@/components/SiteChrome";
 import { SlideToConfirm } from "@/components/SlideToConfirm";
+import { ExpandableServiceCard, type ServiceCardData } from "@/components/ExpandableServiceCard";
 import drLakshmiAsset from "@/assets/dr-lakshmi.png.asset.json";
 const drLakshmi = drLakshmiAsset.url;
 import smileMacro from "@/assets/smile-macro.jpg";
 import clinic from "@/assets/clinic-interior.jpg";
+import t1 from "@/assets/treatment-1.jpg";
+import t2 from "@/assets/treatment-2.jpg";
+import t3 from "@/assets/treatment-3.jpg";
+import t4 from "@/assets/treatment-4.jpg";
+import before1 from "@/assets/before-1.jpg";
 
 export const Route = createFileRoute("/")({ component: Index });
 
-const SERVICES = [
-  { name: "Smile Design", tag: "Signature", desc: "Veneers, whitening, contouring — designed around your face.", to: "/services/smile-design" },
-  { name: "Dental Implants", tag: "Osstem · Nobel", desc: "Fellowship-trained implants that look and feel like your own.", to: "/services/dental-implants" },
-  { name: "Root Canal", tag: "Microscopic", desc: "Painless endodontics under a surgical microscope.", to: "/services/root-canal" },
-  { name: "Orthodontics", tag: "Aligners & Braces", desc: "Discreet clear aligners for adults and teens.", to: "/services" },
-  { name: "Laser Dentistry", tag: "Precision", desc: "Faster healing, less bleeding, no drills where possible.", to: "/services" },
-  { name: "Pediatric Care", tag: "Gentle", desc: "First visits that feel like play, not a procedure.", to: "/services" },
+const galleryHome = [
+  { type: "image" as const, src: t1, caption: "After · Smile Design" },
+  { type: "image" as const, src: t2, caption: "Our Operatory" },
+  { type: "image" as const, src: t3, caption: "Precision Work" },
+  { type: "image" as const, src: t4, caption: "Digital 3D Scan" },
+  { type: "image" as const, src: smileMacro, caption: "Final Result" },
+];
+
+const SERVICES: ServiceCardData[] = [
+  { name: "Smile Design", tag: "Signature", desc: "Veneers, whitening, contouring — designed around your face.", long: "Every smile is designed to your face — not a template. Digital mock-up first, hand-layered veneers second.", price: "From ₹18,000/tooth", color: "bg-[oklch(0.96_0.02_50)]", gallery: galleryHome, before: before1, after: smileMacro },
+  { name: "Dental Implants", tag: "Osstem · Nobel", desc: "Fellowship-trained implants that look and feel like your own.", long: "Fellowship-trained on Osstem & Nobel, guided by 3D CT planning.", price: "From ₹35,000", color: "bg-[oklch(0.94_0.03_35)]", gallery: [galleryHome[3], galleryHome[1], galleryHome[2], galleryHome[0]], before: before1, after: t1 },
+  { name: "Root Canal", tag: "Microscopic", desc: "Painless endodontics under a surgical microscope.", long: "A surgical microscope and modern anaesthetics — one or two visits, almost no post-op pain.", price: "From ₹6,500", color: "bg-[oklch(0.95_0.02_20)]", gallery: [galleryHome[2], galleryHome[3], galleryHome[1]], before: before1, after: smileMacro },
+  { name: "Orthodontics", tag: "Aligners & Braces", desc: "Discreet clear aligners for adults and teens.", long: "Clear aligners for adults, ceramic and metal braces for teens.", price: "From ₹80,000", color: "bg-[oklch(0.96_0.02_75)]", gallery: [galleryHome[3], galleryHome[0], galleryHome[4]], before: before1, after: t1 },
+  { name: "Laser Dentistry", tag: "Precision", desc: "Faster healing, less bleeding, no drills where possible.", long: "Where possible we swap scalpels for lasers — less bleeding, dramatically faster healing.", price: "From ₹3,500", color: "bg-[oklch(0.95_0.02_10)]", gallery: [galleryHome[2], galleryHome[1], galleryHome[0]], before: before1, after: smileMacro },
+  { name: "Pediatric Care", tag: "Gentle", desc: "First visits that feel like play, not a procedure.", long: "First visits designed as an experience — so kids grow up thinking dental chairs are friendly places.", price: "From ₹1,500", color: "bg-[oklch(0.96_0.02_90)]", gallery: [galleryHome[1], galleryHome[0], galleryHome[4]], before: before1, after: t1 },
 ];
 
 const REVIEWS = [
@@ -213,39 +227,25 @@ function Index() {
       {/* SERVICES */}
       <section id="services" className="px-6 lg:px-10 py-24 bg-cream grain">
         <div className="mx-auto max-w-[1400px]">
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-14">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-10">
             <div>
               <p className="text-xs uppercase tracking-[0.3em] text-primary mb-4">— Six ways in</p>
               <h2 className="font-display text-5xl lg:text-7xl max-w-2xl leading-[1]">
                 How can we<br />help you today?
               </h2>
+              <p className="mt-6 text-ink/60 max-w-lg">Tap any curve to see real treatment photos, video from our chair, and a drag-to-reveal before &amp; after.</p>
             </div>
-            <Link to="/services" className="group flex items-center gap-2 text-sm uppercase tracking-[0.2em]">
-              All services <ArrowUpRight className="h-4 w-4 group-hover:rotate-45 transition-transform" />
-            </Link>
+            <div className="w-full lg:w-80 shrink-0">
+              <SlideToConfirm
+                label="Slide to book appointment"
+                confirmedLabel="Opening booking"
+                onConfirm={() => (window.location.href = "/contact")}
+              />
+            </div>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {SERVICES.map((s, i) => (
-              <motion.div
-                key={s.name}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.5, delay: (i % 3) * 0.08 }}
-              >
-                <Link
-                  to={s.to}
-                  className="group block relative bg-ivory rounded-3xl p-8 border border-ink/8 hover:border-primary/30 transition-all h-full overflow-hidden"
-                >
-                  <div className="absolute top-0 right-0 h-32 w-32 rounded-full bg-primary/8 blur-3xl opacity-0 group-hover:opacity-100 transition" />
-                  <div className="flex items-center justify-between relative">
-                    <span className="text-[10px] uppercase tracking-[0.3em] text-primary">{s.tag}</span>
-                    <ArrowUpRight className="h-5 w-5 text-ink/40 group-hover:text-primary group-hover:-translate-y-1 group-hover:translate-x-1 transition" />
-                  </div>
-                  <h3 className="font-display text-3xl mt-14 relative">{s.name}</h3>
-                  <p className="mt-3 text-sm text-ink/60 relative">{s.desc}</p>
-                </Link>
-              </motion.div>
+              <ExpandableServiceCard key={s.name} data={s} index={i} />
             ))}
           </div>
         </div>
