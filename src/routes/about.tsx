@@ -2,7 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { PageShell } from "@/components/SiteChrome";
 import { SlideToConfirm } from "@/components/SlideToConfirm";
-import drLakshmi from "@/assets/dr-lakshmi.jpg";
+import drLakshmiAsset from "@/assets/dr-lakshmi.png.asset.json";
+const drLakshmi = drLakshmiAsset.url;
 import clinic from "@/assets/clinic-interior.jpg";
 
 export const Route = createFileRoute("/about")({
