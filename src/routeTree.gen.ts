@@ -13,6 +13,7 @@ import { Route as ServicesRouteImport } from './routes/services'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ServicesSmileDesignRouteImport } from './routes/services.smile-design'
+import { Route as ServicesDentalImplantsRouteImport } from './routes/services.dental-implants'
 
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
@@ -34,17 +35,24 @@ const ServicesSmileDesignRoute = ServicesSmileDesignRouteImport.update({
   path: '/smile-design',
   getParentRoute: () => ServicesRoute,
 } as any)
+const ServicesDentalImplantsRoute = ServicesDentalImplantsRouteImport.update({
+  id: '/dental-implants',
+  path: '/dental-implants',
+  getParentRoute: () => ServicesRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/services': typeof ServicesRouteWithChildren
+  '/services/dental-implants': typeof ServicesDentalImplantsRoute
   '/services/smile-design': typeof ServicesSmileDesignRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/services': typeof ServicesRouteWithChildren
+  '/services/dental-implants': typeof ServicesDentalImplantsRoute
   '/services/smile-design': typeof ServicesSmileDesignRoute
 }
 export interface FileRoutesById {
@@ -52,14 +60,31 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/services': typeof ServicesRouteWithChildren
+  '/services/dental-implants': typeof ServicesDentalImplantsRoute
   '/services/smile-design': typeof ServicesSmileDesignRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/services' | '/services/smile-design'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/services'
+    | '/services/dental-implants'
+    | '/services/smile-design'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/services' | '/services/smile-design'
-  id: '__root__' | '/' | '/about' | '/services' | '/services/smile-design'
+  to:
+    | '/'
+    | '/about'
+    | '/services'
+    | '/services/dental-implants'
+    | '/services/smile-design'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/services'
+    | '/services/dental-implants'
+    | '/services/smile-design'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -98,14 +123,23 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesSmileDesignRouteImport
       parentRoute: typeof ServicesRoute
     }
+    '/services/dental-implants': {
+      id: '/services/dental-implants'
+      path: '/dental-implants'
+      fullPath: '/services/dental-implants'
+      preLoaderRoute: typeof ServicesDentalImplantsRouteImport
+      parentRoute: typeof ServicesRoute
+    }
   }
 }
 
 interface ServicesRouteChildren {
+  ServicesDentalImplantsRoute: typeof ServicesDentalImplantsRoute
   ServicesSmileDesignRoute: typeof ServicesSmileDesignRoute
 }
 
 const ServicesRouteChildren: ServicesRouteChildren = {
+  ServicesDentalImplantsRoute: ServicesDentalImplantsRoute,
   ServicesSmileDesignRoute: ServicesSmileDesignRoute,
 }
 
