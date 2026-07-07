@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ServicesRouteImport } from './routes/services'
+import { Route as ReviewsRouteImport } from './routes/reviews'
 import { Route as DenCareRouteImport } from './routes/den-care'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
@@ -20,6 +21,11 @@ import { Route as ServicesDentalImplantsRouteImport } from './routes/services.de
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReviewsRoute = ReviewsRouteImport.update({
+  id: '/reviews',
+  path: '/reviews',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DenCareRoute = DenCareRouteImport.update({
@@ -57,6 +63,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/den-care': typeof DenCareRoute
+  '/reviews': typeof ReviewsRoute
   '/services': typeof ServicesRouteWithChildren
   '/services/dental-implants': typeof ServicesDentalImplantsRoute
   '/services/root-canal': typeof ServicesRootCanalRoute
@@ -66,6 +73,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/den-care': typeof DenCareRoute
+  '/reviews': typeof ReviewsRoute
   '/services': typeof ServicesRouteWithChildren
   '/services/dental-implants': typeof ServicesDentalImplantsRoute
   '/services/root-canal': typeof ServicesRootCanalRoute
@@ -76,6 +84,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/den-care': typeof DenCareRoute
+  '/reviews': typeof ReviewsRoute
   '/services': typeof ServicesRouteWithChildren
   '/services/dental-implants': typeof ServicesDentalImplantsRoute
   '/services/root-canal': typeof ServicesRootCanalRoute
@@ -87,6 +96,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/den-care'
+    | '/reviews'
     | '/services'
     | '/services/dental-implants'
     | '/services/root-canal'
@@ -96,6 +106,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/den-care'
+    | '/reviews'
     | '/services'
     | '/services/dental-implants'
     | '/services/root-canal'
@@ -105,6 +116,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/den-care'
+    | '/reviews'
     | '/services'
     | '/services/dental-implants'
     | '/services/root-canal'
@@ -115,6 +127,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   DenCareRoute: typeof DenCareRoute
+  ReviewsRoute: typeof ReviewsRoute
   ServicesRoute: typeof ServicesRouteWithChildren
 }
 
@@ -125,6 +138,13 @@ declare module '@tanstack/react-router' {
       path: '/services'
       fullPath: '/services'
       preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reviews': {
+      id: '/reviews'
+      path: '/reviews'
+      fullPath: '/reviews'
+      preLoaderRoute: typeof ReviewsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/den-care': {
@@ -192,6 +212,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   DenCareRoute: DenCareRoute,
+  ReviewsRoute: ReviewsRoute,
   ServicesRoute: ServicesRouteWithChildren,
 }
 export const routeTree = rootRouteImport
