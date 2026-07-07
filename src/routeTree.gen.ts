@@ -13,6 +13,7 @@ import { Route as ServicesRouteImport } from './routes/services'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ServicesSmileDesignRouteImport } from './routes/services.smile-design'
+import { Route as ServicesRootCanalRouteImport } from './routes/services.root-canal'
 import { Route as ServicesDentalImplantsRouteImport } from './routes/services.dental-implants'
 
 const ServicesRoute = ServicesRouteImport.update({
@@ -35,6 +36,11 @@ const ServicesSmileDesignRoute = ServicesSmileDesignRouteImport.update({
   path: '/smile-design',
   getParentRoute: () => ServicesRoute,
 } as any)
+const ServicesRootCanalRoute = ServicesRootCanalRouteImport.update({
+  id: '/root-canal',
+  path: '/root-canal',
+  getParentRoute: () => ServicesRoute,
+} as any)
 const ServicesDentalImplantsRoute = ServicesDentalImplantsRouteImport.update({
   id: '/dental-implants',
   path: '/dental-implants',
@@ -46,6 +52,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/services': typeof ServicesRouteWithChildren
   '/services/dental-implants': typeof ServicesDentalImplantsRoute
+  '/services/root-canal': typeof ServicesRootCanalRoute
   '/services/smile-design': typeof ServicesSmileDesignRoute
 }
 export interface FileRoutesByTo {
@@ -53,6 +60,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/services': typeof ServicesRouteWithChildren
   '/services/dental-implants': typeof ServicesDentalImplantsRoute
+  '/services/root-canal': typeof ServicesRootCanalRoute
   '/services/smile-design': typeof ServicesSmileDesignRoute
 }
 export interface FileRoutesById {
@@ -61,6 +69,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/services': typeof ServicesRouteWithChildren
   '/services/dental-implants': typeof ServicesDentalImplantsRoute
+  '/services/root-canal': typeof ServicesRootCanalRoute
   '/services/smile-design': typeof ServicesSmileDesignRoute
 }
 export interface FileRouteTypes {
@@ -70,6 +79,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/services'
     | '/services/dental-implants'
+    | '/services/root-canal'
     | '/services/smile-design'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -77,6 +87,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/services'
     | '/services/dental-implants'
+    | '/services/root-canal'
     | '/services/smile-design'
   id:
     | '__root__'
@@ -84,6 +95,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/services'
     | '/services/dental-implants'
+    | '/services/root-canal'
     | '/services/smile-design'
   fileRoutesById: FileRoutesById
 }
@@ -123,6 +135,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesSmileDesignRouteImport
       parentRoute: typeof ServicesRoute
     }
+    '/services/root-canal': {
+      id: '/services/root-canal'
+      path: '/root-canal'
+      fullPath: '/services/root-canal'
+      preLoaderRoute: typeof ServicesRootCanalRouteImport
+      parentRoute: typeof ServicesRoute
+    }
     '/services/dental-implants': {
       id: '/services/dental-implants'
       path: '/dental-implants'
@@ -135,11 +154,13 @@ declare module '@tanstack/react-router' {
 
 interface ServicesRouteChildren {
   ServicesDentalImplantsRoute: typeof ServicesDentalImplantsRoute
+  ServicesRootCanalRoute: typeof ServicesRootCanalRoute
   ServicesSmileDesignRoute: typeof ServicesSmileDesignRoute
 }
 
 const ServicesRouteChildren: ServicesRouteChildren = {
   ServicesDentalImplantsRoute: ServicesDentalImplantsRoute,
+  ServicesRootCanalRoute: ServicesRootCanalRoute,
   ServicesSmileDesignRoute: ServicesSmileDesignRoute,
 }
 
