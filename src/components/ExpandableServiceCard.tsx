@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { SlideToConfirm } from "./SlideToConfirm";
+import { MagneticFloat } from "./MagneticFloat";
 
 export interface ServiceMedia {
   type: "image" | "video";
@@ -105,7 +106,7 @@ export function ExpandableServiceCard({ data, index }: { data: ServiceCardData; 
   const delayClass = ["", "float-delay-1", "float-delay-2", "float-delay-3", "float-delay-4", "float-delay-5"][index % 6];
   return (
     <>
-      <div className={`float-badge ${delayClass}`}>
+      <MagneticFloat variant="badge" delayClass={delayClass} strength={14}>
       <motion.button
         layout
         onClick={() => setOpen(true)}
@@ -133,7 +134,7 @@ export function ExpandableServiceCard({ data, index }: { data: ServiceCardData; 
           </span>
         </div>
       </motion.button>
-      </div>
+      </MagneticFloat>
 
       <AnimatePresence>
         {open && (
