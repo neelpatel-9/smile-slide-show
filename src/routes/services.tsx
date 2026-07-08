@@ -28,6 +28,15 @@ const gallery = [
   { type: "image" as const, src: t3, caption: "Precision Work" },
   { type: "image" as const, src: t4, caption: "Digital 3D Scan" },
   { type: "image" as const, src: smileMacro, caption: "Final Result" },
+  { type: "image" as const, src: clinic, caption: "Clinic Interior" },
+];
+
+const makeCases = (baseGallery: typeof gallery, before: string, after: string) => [
+  { title: "Case 01", note: "Initial assessment & digital planning", gallery: [baseGallery[3], baseGallery[1]], before, after },
+  { title: "Case 02", note: "Treatment in progress", gallery: [baseGallery[2], baseGallery[3]], before, after },
+  { title: "Case 03", note: "Precision finishing", gallery: [baseGallery[0], baseGallery[4]], before, after },
+  { title: "Case 04", note: "Final result & aftercare", gallery: [baseGallery[4], baseGallery[5]], before, after },
+  { title: "Case 05", note: "Long-term maintenance review", gallery: [baseGallery[1], baseGallery[0]], before, after },
 ];
 
 const SERVICES: ServiceCardData[] = [
@@ -38,9 +47,7 @@ const SERVICES: ServiceCardData[] = [
     long: "Every smile is designed to your face — not a template. We start with a digital mock-up, then hand-layer veneers, whiten, and gently sculpt gum lines until the smile feels unmistakably yours.",
     price: "From ₹18,000/tooth",
     color: "bg-[oklch(0.96_0.02_50)]",
-    gallery,
-    before: before1,
-    after: smileMacro,
+    cases: makeCases(gallery, before1, smileMacro),
   },
   {
     name: "Dental Implants",
@@ -49,9 +56,7 @@ const SERVICES: ServiceCardData[] = [
     long: "Fellowship-trained on both Osstem and Nobel Biocare systems and guided by 3D CT planning — implants that look, chew and feel like the tooth you were born with.",
     price: "From ₹35,000",
     color: "bg-[oklch(0.94_0.03_35)]",
-    gallery: [gallery[3], gallery[1], gallery[2], gallery[0]],
-    before: before1,
-    after: t1,
+    cases: makeCases([gallery[3], gallery[1], gallery[2], gallery[0], gallery[4], gallery[5]], before1, t1),
   },
   {
     name: "Root Canal",
@@ -60,9 +65,7 @@ const SERVICES: ServiceCardData[] = [
     long: "A surgical microscope, a single practitioner, and modern anaesthetics — root canals that finish in one or two visits with almost no post-op pain.",
     price: "From ₹6,500",
     color: "bg-[oklch(0.95_0.02_20)]",
-    gallery: [gallery[2], gallery[3], gallery[1]],
-    before: before1,
-    after: smileMacro,
+    cases: makeCases([gallery[2], gallery[3], gallery[1], gallery[0], gallery[4], gallery[5]], before1, smileMacro),
   },
   {
     name: "Orthodontics",
@@ -71,9 +74,7 @@ const SERVICES: ServiceCardData[] = [
     long: "Clear aligners for adults who don't want anyone to know, ceramic for teens who want it subtle, and classic metal when speed matters most.",
     price: "From ₹80,000",
     color: "bg-[oklch(0.96_0.02_75)]",
-    gallery: [gallery[3], gallery[0], gallery[4]],
-    before: before1,
-    after: t1,
+    cases: makeCases([gallery[3], gallery[0], gallery[4], gallery[1], gallery[2], gallery[5]], before1, t1),
   },
   {
     name: "Laser Dentistry",
@@ -82,9 +83,7 @@ const SERVICES: ServiceCardData[] = [
     long: "Where possible, we swap scalpels for lasers — less bleeding, less swelling, dramatically faster healing for gum contouring and soft-tissue work.",
     price: "From ₹3,500",
     color: "bg-[oklch(0.95_0.02_10)]",
-    gallery: [gallery[2], gallery[1], gallery[0]],
-    before: before1,
-    after: smileMacro,
+    cases: makeCases([gallery[2], gallery[1], gallery[0], gallery[3], gallery[4], gallery[5]], before1, smileMacro),
   },
   {
     name: "Pediatric Care",
@@ -93,9 +92,7 @@ const SERVICES: ServiceCardData[] = [
     long: "First visits designed as an experience, not a procedure — so your child grows up thinking dental chairs are friendly places.",
     price: "From ₹1,500",
     color: "bg-[oklch(0.96_0.02_90)]",
-    gallery: [gallery[1], gallery[0], gallery[4]],
-    before: before1,
-    after: t1,
+    cases: makeCases([gallery[1], gallery[0], gallery[4], gallery[2], gallery[3], gallery[5]], before1, t1),
   },
 ];
 
@@ -111,7 +108,7 @@ function Services() {
                 Six services.<br />
                 One <em className="text-primary not-italic">unhurried</em> chair.
               </h1>
-              <p className="mt-6 text-ink/60 max-w-lg">Tap any service to open the gallery — real treatment photos, video from our chair, and a drag-to-reveal before &amp; after.</p>
+              <p className="mt-6 text-ink/60 max-w-lg">Tap any service to open the gallery — five real treatment cases per service, each with photos and a drag-to-reveal before &amp; after.</p>
             </div>
             <div className="w-full lg:w-96 shrink-0">
               <SlideToConfirm

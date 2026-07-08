@@ -26,13 +26,50 @@ const galleryHome = [
 ];
 
 const SERVICES: ServiceCardData[] = [
-  { name: "Smile Design", tag: "Signature", desc: "Veneers, whitening, contouring — designed around your face.", long: "Every smile is designed to your face — not a template. Digital mock-up first, hand-layered veneers second.", price: "From ₹18,000/tooth", color: "bg-[oklch(0.96_0.02_50)]", gallery: galleryHome, before: before1, after: smileMacro },
-  { name: "Dental Implants", tag: "Osstem · Nobel", desc: "Fellowship-trained implants that look and feel like your own.", long: "Fellowship-trained on Osstem & Nobel, guided by 3D CT planning.", price: "From ₹35,000", color: "bg-[oklch(0.94_0.03_35)]", gallery: [galleryHome[3], galleryHome[1], galleryHome[2], galleryHome[0]], before: before1, after: t1 },
-  { name: "Root Canal", tag: "Microscopic", desc: "Painless endodontics under a surgical microscope.", long: "A surgical microscope and modern anaesthetics — one or two visits, almost no post-op pain.", price: "From ₹6,500", color: "bg-[oklch(0.95_0.02_20)]", gallery: [galleryHome[2], galleryHome[3], galleryHome[1]], before: before1, after: smileMacro },
-  { name: "Orthodontics", tag: "Aligners & Braces", desc: "Discreet clear aligners for adults and teens.", long: "Clear aligners for adults, ceramic and metal braces for teens.", price: "From ₹80,000", color: "bg-[oklch(0.96_0.02_75)]", gallery: [galleryHome[3], galleryHome[0], galleryHome[4]], before: before1, after: t1 },
-  { name: "Laser Dentistry", tag: "Precision", desc: "Faster healing, less bleeding, no drills where possible.", long: "Where possible we swap scalpels for lasers — less bleeding, dramatically faster healing.", price: "From ₹3,500", color: "bg-[oklch(0.95_0.02_10)]", gallery: [galleryHome[2], galleryHome[1], galleryHome[0]], before: before1, after: smileMacro },
-  { name: "Pediatric Care", tag: "Gentle", desc: "First visits that feel like play, not a procedure.", long: "First visits designed as an experience — so kids grow up thinking dental chairs are friendly places.", price: "From ₹1,500", color: "bg-[oklch(0.96_0.02_90)]", gallery: [galleryHome[1], galleryHome[0], galleryHome[4]], before: before1, after: t1 },
+  { name: "Smile Design", tag: "Signature", desc: "Veneers, whitening, contouring — designed around your face.", long: "Every smile is designed to your face — not a template. Digital mock-up first, hand-layered veneers second.", price: "From ₹18,000/tooth", color: "bg-[oklch(0.96_0.02_50)]", cases: [
+    { title: "Veneer makeover", note: "10 upper veneers, face-first mock-up", gallery: [galleryHome[0], galleryHome[3]], before: before1, after: smileMacro },
+    { title: "Whitening upgrade", note: "In-chair whitening + home kit", gallery: [galleryHome[4], galleryHome[1]], before: before1, after: smileMacro },
+    { title: "Gum contouring", note: "Laser gum lift for gummy smile", gallery: [galleryHome[2], galleryHome[0]], before: before1, after: smileMacro },
+    { title: "Smile mock-up", note: "Digital preview before treatment", gallery: [galleryHome[3], galleryHome[4]], before: before1, after: smileMacro },
+    { title: "Full mouth rehab", note: "Bite rebuild + aesthetics", gallery: [galleryHome[1], galleryHome[2]], before: before1, after: smileMacro },
+  ]},
+  { name: "Dental Implants", tag: "Osstem · Nobel", desc: "Fellowship-trained implants that look and feel like your own.", long: "Fellowship-trained on Osstem & Nobel, guided by 3D CT planning.", price: "From ₹35,000", color: "bg-[oklch(0.94_0.03_35)]", cases: [
+    { title: "Single tooth", note: "One implant, one crown", gallery: [galleryHome[3], galleryHome[1]], before: before1, after: t1 },
+    { title: "Full arch", note: "All-on-4 full mouth reconstruction", gallery: [galleryHome[2], galleryHome[0]], before: before1, after: t1 },
+    { title: "Immediate implant", note: "Tooth out, implant same day", gallery: [galleryHome[1], galleryHome[3]], before: before1, after: t1 },
+    { title: "Bone grafting", note: "Ridge augmentation before implant", gallery: [galleryHome[0], galleryHome[2]], before: before1, after: t1 },
+    { title: "Implant bridge", note: "Three-unit bridge on two implants", gallery: [galleryHome[4], galleryHome[3]], before: before1, after: t1 },
+  ]},
+  { name: "Root Canal", tag: "Microscopic", desc: "Painless endodontics under a surgical microscope.", long: "A surgical microscope and modern anaesthetics — one or two visits, almost no post-op pain.", price: "From ₹6,500", color: "bg-[oklch(0.95_0.02_20)]", cases: [
+    { title: "Molar RCT", note: "Microscopic molar root canal", gallery: [galleryHome[2], galleryHome[3]], before: before1, after: smileMacro },
+    { title: "Anterior RCT", note: "Front tooth, single visit", gallery: [galleryHome[0], galleryHome[1]], before: before1, after: smileMacro },
+    { title: "Re-treatment", note: "Failed RCT corrected under microscope", gallery: [galleryHome[3], galleryHome[2]], before: before1, after: smileMacro },
+    { title: "Precision case", note: "Calcified canal navigation", gallery: [galleryHome[1], galleryHome[4]], before: before1, after: smileMacro },
+    { title: "One-visit endo", note: "Single-sitting root canal", gallery: [galleryHome[4], galleryHome[0]], before: before1, after: smileMacro },
+  ]},
+  { name: "Orthodontics", tag: "Aligners & Braces", desc: "Discreet clear aligners for adults and teens.", long: "Clear aligners for adults, ceramic and metal braces for teens.", price: "From ₹80,000", color: "bg-[oklch(0.96_0.02_75)]", cases: [
+    { title: "Clear aligners", note: "Invisible trays for adults", gallery: [galleryHome[3], galleryHome[0]], before: before1, after: t1 },
+    { title: "Ceramic braces", note: "Tooth-coloured brackets", gallery: [galleryHome[1], galleryHome[4]], before: before1, after: t1 },
+    { title: "Metal braces", note: "Fast, reliable correction", gallery: [galleryHome[2], galleryHome[1]], before: before1, after: t1 },
+    { title: "Teen alignment", note: "Growth-phase correction", gallery: [galleryHome[0], galleryHome[3]], before: before1, after: t1 },
+    { title: "Bite correction", note: "Open bite closed with aligners", gallery: [galleryHome[4], galleryHome[2]], before: before1, after: t1 },
+  ]},
+  { name: "Laser Dentistry", tag: "Precision", desc: "Faster healing, less bleeding, no drills where possible.", long: "Where possible we swap scalpels for lasers — less bleeding, dramatically faster healing.", price: "From ₹3,500", color: "bg-[oklch(0.95_0.02_10)]", cases: [
+    { title: "Gum contouring", note: "Laser gum lift, no stitches", gallery: [galleryHome[2], galleryHome[1]], before: before1, after: smileMacro },
+    { title: "Frenectomy", note: "Tongue-tie release in minutes", gallery: [galleryHome[0], galleryHome[3]], before: before1, after: smileMacro },
+    { title: "Soft tissue", note: "Lesion removal with laser", gallery: [galleryHome[1], galleryHome[2]], before: before1, after: smileMacro },
+    { title: "Laser whitening", note: "Accelerated in-chair whitening", gallery: [galleryHome[4], galleryHome[0]], before: before1, after: smileMacro },
+    { title: "Periodontal therapy", note: "Laser gum pocket cleaning", gallery: [galleryHome[3], galleryHome[4]], before: before1, after: smileMacro },
+  ]},
+  { name: "Pediatric Care", tag: "Gentle", desc: "First visits that feel like play, not a procedure.", long: "First visits designed as an experience — so kids grow up thinking dental chairs are friendly places.", price: "From ₹1,500", color: "bg-[oklch(0.96_0.02_90)]", cases: [
+    { title: "First dental visit", note: "Child-friendly introduction", gallery: [galleryHome[1], galleryHome[0]], before: before1, after: t1 },
+    { title: "Sealants", note: "Pit & fissure protection", gallery: [galleryHome[3], galleryHome[1]], before: before1, after: t1 },
+    { title: "Fluoride treatment", note: "Strengthening young enamel", gallery: [galleryHome[0], galleryHome[4]], before: before1, after: t1 },
+    { title: "Kids filling", note: "Tooth-coloured paediatric filling", gallery: [galleryHome[2], galleryHome[3]], before: before1, after: t1 },
+    { title: "Habit counselling", note: "Thumb-sucking guidance", gallery: [galleryHome[4], galleryHome[2]], before: before1, after: t1 },
+  ]},
 ];
+
 
 const REVIEWS = [
   { name: "Ananya S.", city: "Indiranagar", text: "Didn't feel like a dental clinic. Dr. Lakshmi and her team made my smile design journey feel curated, not clinical.", rating: 5 },
