@@ -65,7 +65,9 @@ function AboutPage() {
 
       <section className="px-6 lg:px-10 pb-24">
         <div className="mx-auto max-w-[1400px]">
-          <img src={drLakshmi} alt="Dr. Lakshmi Roopesh, Founder of Dental Den, Hennur Bengaluru" className="w-full aspect-[16/9] object-cover rounded-[2rem]" loading="lazy" />
+          <div className="float">
+            <img src={drLakshmi} alt="Dr. Lakshmi Roopesh, Founder of Dental Den, Hennur Bengaluru" className="w-full aspect-[16/9] object-cover rounded-[2rem] shadow-[0_40px_80px_-40px_rgba(0,0,0,0.35)]" loading="lazy" />
+          </div>
         </div>
       </section>
 
