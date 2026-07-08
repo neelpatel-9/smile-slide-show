@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { PageShell } from "@/components/SiteChrome";
 import { SlideToConfirm } from "@/components/SlideToConfirm";
+import { MagneticFloat } from "@/components/MagneticFloat";
 import drLakshmiAsset from "@/assets/dr-lakshmi.png.asset.json";
 const drLakshmi = drLakshmiAsset.url;
 import clinic from "@/assets/clinic-interior.jpg";
@@ -65,9 +66,9 @@ function AboutPage() {
 
       <section className="px-6 lg:px-10 pb-24">
         <div className="mx-auto max-w-[1400px]">
-          <div className="float">
+          <MagneticFloat strength={24}>
             <img src={drLakshmi} alt="Dr. Lakshmi Roopesh, Founder of Dental Den, Hennur Bengaluru" className="w-full aspect-[16/9] object-cover rounded-[2rem] shadow-[0_40px_80px_-40px_rgba(0,0,0,0.35)]" loading="lazy" />
-          </div>
+          </MagneticFloat>
         </div>
       </section>
 
