@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { SlideToConfirm } from "./SlideToConfirm";
 import { MagneticFloat } from "./MagneticFloat";
@@ -11,6 +11,14 @@ export interface ServiceMedia {
   caption?: string;
 }
 
+export interface TreatmentCase {
+  title: string;
+  note: string;
+  gallery: ServiceMedia[];
+  before: string;
+  after: string;
+}
+
 export interface ServiceCardData {
   name: string;
   tag: string;
@@ -18,9 +26,7 @@ export interface ServiceCardData {
   long: string;
   price: string;
   color: string; // tailwind bg class for the pill
-  gallery: ServiceMedia[];
-  before: string;
-  after: string;
+  cases: TreatmentCase[];
 }
 
 function Gallery({ items }: { items: ServiceMedia[] }) {
@@ -101,6 +107,82 @@ function BeforeAfterSlider({ before, after }: { before: string; after: string })
   );
 }
 
+function TreatmentCases({ cases }: { cases: TreatmentCase[] }) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(0);
+
+  const scrollTo = (i: number) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const child = el.children[i] as HTMLElement | undefined;
+    if (!child) return;
+    el.scrollTo({ left: child.offsetLeft - 24, behavior: "smooth" });
+    setActive(i);
+  };
+
+  return (
+    <div className="relative">
+      {/* Numbered quick-jump chips */}
+      <div className="flex items-center gap-2 mb-4 overflow-x-auto scrollbar-hide pb-1">
+        {cases.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => scrollTo(i)}
+            className={`shrink-0 h-10 px-4 rounded-full border text-sm font-display transition-colors ${
+              active === i
+                ? "bg-primary text-primary-foreground border-primary"
+                : "bg-ivory border-ink/15 text-ink/60 hover:border-primary"
+            }`}
+          >
+            0{i + 1}
+          </button>
+        ))}
+      </div>
+
+      {/* Scrollable treatment case strip */}
+      <div
+        ref={scrollRef}
+        onScroll={() => {
+          const el = scrollRef.current;
+          if (!el) return;
+          const child = Array.from(el.children).find((c) => {
+            const r = (c as HTMLElement).getBoundingClientRect();
+            const center = r.left + r.width / 2;
+            return center > el.getBoundingClientRect().left && center < el.getBoundingClientRect().right;
+          });
+          if (child) {
+            const idx = Array.from(el.children).indexOf(child);
+            setActive(idx);
+          }
+        }}
+        className="flex overflow-x-auto snap-x snap-mandatory gap-5 pb-6 -mx-6 px-6 sm:-mx-10 sm:px-10 scrollbar-hide"
+      >
+        {cases.map((c, i) => (
+          <div
+            key={i}
+            className="snap-start shrink-0 w-[85vw] sm:w-[60vw] lg:w-[45vw] xl:w-[40vw] space-y-4"
+          >
+            <div className="flex items-start gap-4">
+              <span className="font-display text-5xl text-primary leading-none">0{i + 1}</span>
+              <div>
+                <h4 className="font-display text-2xl leading-tight">{c.title}</h4>
+                <p className="mt-1 text-sm text-ink/60">{c.note}</p>
+              </div>
+            </div>
+            <Gallery items={c.gallery} />
+            <BeforeAfterSlider before={c.before} after={c.after} />
+          </div>
+        ))}
+      </div>
+
+      <p className="text-xs text-ink/40 mt-1 flex items-center gap-2">
+        <span className="inline-block h-1 w-4 rounded-full bg-ink/20" />
+        Swipe or drag to see more treatment cases
+      </p>
+    </div>
+  );
+}
+
 export function ExpandableServiceCard({ data, index }: { data: ServiceCardData; index: number }) {
   const [open, setOpen] = useState(false);
   const delayClass = ["", "float-delay-1", "float-delay-2", "float-delay-3", "float-delay-4", "float-delay-5"][index % 6];
@@ -151,7 +233,7 @@ export function ExpandableServiceCard({ data, index }: { data: ServiceCardData; 
               exit={{ opacity: 0, y: 40, scale: 0.96 }}
               transition={{ type: "spring", stiffness: 240, damping: 28 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-[1200px] my-6 rounded-[2rem] bg-ivory overflow-hidden shadow-2xl"
+              className="relative w-full max-w-[1400px] my-6 rounded-[2rem] bg-ivory overflow-hidden shadow-2xl"
             >
               {/* Top bar with appointment slide */}
               <div className="sticky top-0 z-10 flex items-center gap-4 bg-ivory/95 backdrop-blur border-b border-ink/8 px-5 py-4">
@@ -177,15 +259,9 @@ export function ExpandableServiceCard({ data, index }: { data: ServiceCardData; 
                 <h2 className="font-display text-4xl lg:text-6xl mt-2 leading-[1]">{data.name}</h2>
                 <p className="mt-5 text-ink/70 max-w-2xl">{data.long}</p>
 
-                <div className="mt-10 grid lg:grid-cols-2 gap-6">
-                  <div>
-                    <p className="text-[10px] uppercase tracking-[0.3em] text-primary mb-3">— Treatments · photos & video</p>
-                    <Gallery items={data.gallery} />
-                  </div>
-                  <div>
-                    <p className="text-[10px] uppercase tracking-[0.3em] text-primary mb-3">— Before / after · drag the handle</p>
-                    <BeforeAfterSlider before={data.before} after={data.after} />
-                  </div>
+                <div className="mt-10">
+                  <p className="text-[10px] uppercase tracking-[0.3em] text-primary mb-4">— Real treatments · 01 to 0{data.cases.length}</p>
+                  <TreatmentCases cases={data.cases} />
                 </div>
 
                 <div className="mt-10 flex flex-wrap items-center justify-between gap-6 border-t border-ink/10 pt-6">
