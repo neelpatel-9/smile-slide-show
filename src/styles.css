@@ -202,3 +202,26 @@
     animation: shimmer 2.4s ease-in-out infinite;
   }
 }
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%      { transform: translateY(-14px) rotate(0.4deg); }
+}
+@keyframes float-badge {
+  0%, 100% { transform: translateY(0) rotate(-0.6deg); }
+  50%      { transform: translateY(-10px) rotate(0.6deg); }
+}
+
+@utility float {
+  animation: float-y 6s ease-in-out infinite;
+  will-change: transform;
+}
+@utility float-badge {
+  animation: float-badge 5.5s ease-in-out infinite;
+  will-change: transform;
+}
+@utility float-delay-1 { animation-delay: 0.4s; }
+@utility float-delay-2 { animation-delay: 0.9s; }
+@utility float-delay-3 { animation-delay: 1.4s; }
+@utility float-delay-4 { animation-delay: 1.9s; }
+@utility float-delay-5 { animation-delay: 2.4s; }
