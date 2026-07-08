@@ -102,8 +102,10 @@ function BeforeAfterSlider({ before, after }: { before: string; after: string })
 
 export function ExpandableServiceCard({ data, index }: { data: ServiceCardData; index: number }) {
   const [open, setOpen] = useState(false);
+  const delayClass = ["", "float-delay-1", "float-delay-2", "float-delay-3", "float-delay-4", "float-delay-5"][index % 6];
   return (
     <>
+      <div className={`float-badge ${delayClass}`}>
       <motion.button
         layout
         onClick={() => setOpen(true)}
@@ -131,6 +133,7 @@ export function ExpandableServiceCard({ data, index }: { data: ServiceCardData; 
           </span>
         </div>
       </motion.button>
+      </div>
 
       <AnimatePresence>
         {open && (
