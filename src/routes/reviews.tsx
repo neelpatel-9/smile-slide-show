@@ -46,7 +46,10 @@ function Reviews() {
               <div className="flex gap-1 text-primary mb-4">
                 {[...Array(5)].map((_, i) => <Star key={i} className="h-6 w-6 fill-current" />)}
               </div>
-              <p className="font-display text-6xl">4.7 <span className="text-2xl text-ink/50">/ 5</span></p>
+              <p className="font-display text-6xl flex items-center gap-2">
+                4.7 <Star className="h-8 w-8 fill-current" />
+              </p>
+              <p className="mt-1 text-sm font-medium text-ink/60">google rating</p>
               <p className="mt-3 text-sm text-ink/60">Across 183 verified Google reviews. Zero paid, zero incentivised.</p>
               <div className="mt-6">
                 <SlideToConfirm label="Read them on Google" onConfirm={() => window.open("https://www.google.com/search?q=dental+den+hennur+reviews", "_blank")} />
