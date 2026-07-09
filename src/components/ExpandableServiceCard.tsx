@@ -112,14 +112,14 @@ function TreatmentCases({ cases }: { cases: TreatmentCase[] }) {
   const c = cases[active];
   return (
     <div className="relative">
-      {/* Header row: numbered tabs + slide-to-book on the right */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+      {/* Numbered tabs */}
+      <div className="flex items-center justify-between gap-4 mb-4">
         <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide pb-1">
           {cases.map((_, i) => (
             <button
               key={i}
               onClick={() => setActive(i)}
-              className={`shrink-0 h-10 min-w-10 px-4 rounded-full border text-sm font-display transition-colors ${
+              className={`shrink-0 h-9 min-w-9 px-3 rounded-full border text-xs font-display transition-colors ${
                 active === i
                   ? "bg-primary text-primary-foreground border-primary"
                   : "bg-ivory border-ink/15 text-ink/60 hover:border-primary"
@@ -129,14 +129,9 @@ function TreatmentCases({ cases }: { cases: TreatmentCase[] }) {
             </button>
           ))}
         </div>
-        <div className="w-full sm:w-72 shrink-0">
-          <SlideToConfirm
-            label="Book an appointment"
-            confirmedLabel="Opening booking"
-            size="sm"
-            onConfirm={() => (window.location.href = "/contact")}
-          />
-        </div>
+        <p className="text-[10px] uppercase tracking-[0.25em] text-ink/50 whitespace-nowrap hidden md:block">
+          Case 0{active + 1} / 0{cases.length}
+        </p>
       </div>
 
       {/* Single active treatment case */}
@@ -147,16 +142,16 @@ function TreatmentCases({ cases }: { cases: TreatmentCase[] }) {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.3 }}
-          className="space-y-4"
+          className="space-y-3"
         >
-          <div className="flex items-start gap-4">
-            <span className="font-display text-5xl text-primary leading-none">0{active + 1}</span>
+          <div className="flex items-start gap-3">
+            <span className="font-display text-3xl text-primary leading-none">0{active + 1}</span>
             <div>
-              <h4 className="font-display text-2xl leading-tight">{c.title}</h4>
-              <p className="mt-1 text-sm text-ink/60">{c.note}</p>
+              <h4 className="font-display text-xl leading-tight">{c.title}</h4>
+              <p className="mt-0.5 text-xs text-ink/60">{c.note}</p>
             </div>
           </div>
-          <div className="grid md:grid-cols-2 gap-5">
+          <div className="grid md:grid-cols-2 gap-4">
             <Gallery items={c.gallery} />
             <BeforeAfterSlider before={c.before} after={c.after} />
           </div>
