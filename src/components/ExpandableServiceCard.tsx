@@ -177,7 +177,6 @@ export function ExpandableServiceCard({ data, index }: { data: ServiceCardData; 
         viewport={{ once: true, margin: "-40px" }}
         transition={{ duration: 0.5, delay: (index % 3) * 0.08 }}
         whileHover={{ y: -10, scale: 1.03 }}
-        transition-spring
         className="group relative text-left w-full rounded-[2rem] p-8 lg:p-10 bg-white border border-ink/8 overflow-hidden shadow-[0_2px_10px_-4px_rgba(0,0,0,0.08)] hover:shadow-[0_30px_60px_-20px_rgba(0,0,0,0.18)] transition-shadow"
       >
         <div className="absolute -top-16 -right-16 h-56 w-56 rounded-full bg-primary/10 blur-3xl opacity-0 group-hover:opacity-100 transition" />
