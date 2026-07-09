@@ -2,7 +2,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { SlideToConfirm } from "./SlideToConfirm";
-import { MagneticFloat } from "./MagneticFloat";
 
 export interface ServiceMedia {
   type: "image" | "video";
@@ -168,10 +167,8 @@ function TreatmentCases({ cases }: { cases: TreatmentCase[] }) {
 
 export function ExpandableServiceCard({ data, index }: { data: ServiceCardData; index: number }) {
   const [open, setOpen] = useState(false);
-  const delayClass = ["", "float-delay-1", "float-delay-2", "float-delay-3", "float-delay-4", "float-delay-5"][index % 6];
   return (
     <>
-      <MagneticFloat variant="badge" delayClass={delayClass} strength={14}>
       <motion.button
         layout
         onClick={() => setOpen(true)}
@@ -179,27 +176,23 @@ export function ExpandableServiceCard({ data, index }: { data: ServiceCardData; 
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-40px" }}
         transition={{ duration: 0.5, delay: (index % 3) * 0.08 }}
-        whileHover={{ y: -6 }}
-        className={`group relative text-left w-full rounded-[2.5rem] p-8 lg:p-10 border border-ink/8 overflow-hidden transition-shadow hover:shadow-[0_30px_60px_-30px_rgba(0,0,0,0.25)] ${data.color}`}
+        whileHover={{ y: -10, scale: 1.03 }}
+        className="group relative text-left w-full rounded-[2rem] p-8 lg:p-10 bg-white border border-ink/8 overflow-hidden shadow-[0_2px_10px_-4px_rgba(0,0,0,0.08)] hover:shadow-[0_30px_60px_-20px_rgba(0,0,0,0.18)] transition-shadow"
       >
         <div className="absolute -top-16 -right-16 h-56 w-56 rounded-full bg-primary/10 blur-3xl opacity-0 group-hover:opacity-100 transition" />
         <div className="relative flex items-start justify-between gap-4">
           <span className="text-[10px] uppercase tracking-[0.3em] text-primary">{data.tag}</span>
           <span className="font-display text-2xl text-ink/30">0{index + 1}</span>
         </div>
-        <h3 className="relative font-display text-4xl lg:text-5xl mt-14 leading-[1]">{data.name}</h3>
+        <h3 className="relative font-display text-4xl lg:text-5xl mt-14 leading-[1] text-primary">{data.name}</h3>
         <p className="relative mt-4 text-sm text-ink/60 max-w-xs">{data.desc}</p>
         <div className="relative mt-10 flex items-center justify-between">
           <span className="text-xs uppercase tracking-[0.25em] text-ink/50">{data.price}</span>
-          <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-primary">
+          <span className="inline-flex items-center justify-center h-11 px-8 rounded-full bg-ink text-ivory text-[11px] uppercase tracking-[0.25em] group-hover:bg-primary transition-colors">
             Tap to open
-            <span className="h-8 w-8 rounded-full bg-primary text-primary-foreground grid place-items-center group-hover:rotate-45 transition-transform">
-              +
-            </span>
           </span>
         </div>
       </motion.button>
-      </MagneticFloat>
 
       <AnimatePresence>
         {open && (
