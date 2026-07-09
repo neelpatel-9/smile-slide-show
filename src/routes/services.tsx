@@ -47,6 +47,7 @@ const SERVICES: ServiceCardData[] = [
     long: "Every smile is designed to your face — not a template. We start with a digital mock-up, then hand-layer veneers, whiten, and gently sculpt gum lines until the smile feels unmistakably yours.",
     price: "From ₹18,000/tooth",
     color: "bg-[oklch(0.96_0.02_50)]",
+    image: smileMacro,
     cases: makeCases(gallery, before1, smileMacro),
   },
   {
@@ -56,6 +57,7 @@ const SERVICES: ServiceCardData[] = [
     long: "Fellowship-trained on both Osstem and Nobel Biocare systems and guided by 3D CT planning — implants that look, chew and feel like the tooth you were born with.",
     price: "From ₹35,000",
     color: "bg-[oklch(0.94_0.03_35)]",
+    image: t1,
     cases: makeCases([gallery[3], gallery[1], gallery[2], gallery[0], gallery[4], gallery[5]], before1, t1),
   },
   {
@@ -65,6 +67,7 @@ const SERVICES: ServiceCardData[] = [
     long: "A surgical microscope, a single practitioner, and modern anaesthetics — root canals that finish in one or two visits with almost no post-op pain.",
     price: "From ₹6,500",
     color: "bg-[oklch(0.95_0.02_20)]",
+    image: t3,
     cases: makeCases([gallery[2], gallery[3], gallery[1], gallery[0], gallery[4], gallery[5]], before1, smileMacro),
   },
   {
@@ -74,6 +77,7 @@ const SERVICES: ServiceCardData[] = [
     long: "Clear aligners for adults who don't want anyone to know, ceramic for teens who want it subtle, and classic metal when speed matters most.",
     price: "From ₹80,000",
     color: "bg-[oklch(0.96_0.02_75)]",
+    image: t4,
     cases: makeCases([gallery[3], gallery[0], gallery[4], gallery[1], gallery[2], gallery[5]], before1, t1),
   },
   {
@@ -83,6 +87,7 @@ const SERVICES: ServiceCardData[] = [
     long: "Where possible, we swap scalpels for lasers — less bleeding, less swelling, dramatically faster healing for gum contouring and soft-tissue work.",
     price: "From ₹3,500",
     color: "bg-[oklch(0.95_0.02_10)]",
+    image: t2,
     cases: makeCases([gallery[2], gallery[1], gallery[0], gallery[3], gallery[4], gallery[5]], before1, smileMacro),
   },
   {
@@ -92,8 +97,19 @@ const SERVICES: ServiceCardData[] = [
     long: "First visits designed as an experience, not a procedure — so your child grows up thinking dental chairs are friendly places.",
     price: "From ₹1,500",
     color: "bg-[oklch(0.96_0.02_90)]",
+    image: clinic,
     cases: makeCases([gallery[1], gallery[0], gallery[4], gallery[2], gallery[3], gallery[5]], before1, t1),
   },
+];
+
+// Alternating asymmetric layout: wide (3 cols) + compact (2 cols), then flipped.
+const LAYOUT: Array<{ variant: "wide" | "compact"; span: string }> = [
+  { variant: "wide", span: "md:col-span-3" },
+  { variant: "compact", span: "md:col-span-2" },
+  { variant: "compact", span: "md:col-span-2" },
+  { variant: "wide", span: "md:col-span-3" },
+  { variant: "wide", span: "md:col-span-3" },
+  { variant: "compact", span: "md:col-span-2" },
 ];
 
 function Services() {
@@ -119,9 +135,11 @@ function Services() {
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid md:grid-cols-5 gap-5 auto-rows-fr">
             {SERVICES.map((s, i) => (
-              <ExpandableServiceCard key={s.name} data={s} index={i} />
+              <div key={s.name} className={LAYOUT[i].span}>
+                <ExpandableServiceCard data={s} index={i} variant={LAYOUT[i].variant} />
+              </div>
             ))}
           </div>
         </div>
