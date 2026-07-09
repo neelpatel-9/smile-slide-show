@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { SlideToConfirm } from "./SlideToConfirm";
 import { MagneticFloat } from "./MagneticFloat";
