@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { SlideToConfirm } from "./SlideToConfirm";
 import { MagneticFloat } from "./MagneticFloat";
@@ -108,77 +108,60 @@ function BeforeAfterSlider({ before, after }: { before: string; after: string })
 }
 
 function TreatmentCases({ cases }: { cases: TreatmentCase[] }) {
-  const scrollRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
-
-  const scrollTo = (i: number) => {
-    const el = scrollRef.current;
-    if (!el) return;
-    const child = el.children[i] as HTMLElement | undefined;
-    if (!child) return;
-    el.scrollTo({ left: child.offsetLeft - 24, behavior: "smooth" });
-    setActive(i);
-  };
-
+  const c = cases[active];
   return (
     <div className="relative">
-      {/* Numbered quick-jump chips */}
-      <div className="flex items-center gap-2 mb-4 overflow-x-auto scrollbar-hide pb-1">
-        {cases.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => scrollTo(i)}
-            className={`shrink-0 h-10 px-4 rounded-full border text-sm font-display transition-colors ${
-              active === i
-                ? "bg-primary text-primary-foreground border-primary"
-                : "bg-ivory border-ink/15 text-ink/60 hover:border-primary"
-            }`}
-          >
-            0{i + 1}
-          </button>
-        ))}
+      {/* Header row: numbered tabs + slide-to-book on the right */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+        <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide pb-1">
+          {cases.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setActive(i)}
+              className={`shrink-0 h-10 min-w-10 px-4 rounded-full border text-sm font-display transition-colors ${
+                active === i
+                  ? "bg-primary text-primary-foreground border-primary"
+                  : "bg-ivory border-ink/15 text-ink/60 hover:border-primary"
+              }`}
+            >
+              0{i + 1}
+            </button>
+          ))}
+        </div>
+        <div className="w-full sm:w-72 shrink-0">
+          <SlideToConfirm
+            label="Book an appointment"
+            confirmedLabel="Opening booking"
+            size="sm"
+            onConfirm={() => (window.location.href = "/contact")}
+          />
+        </div>
       </div>
 
-      {/* Scrollable treatment case strip */}
-      <div
-        ref={scrollRef}
-        onScroll={() => {
-          const el = scrollRef.current;
-          if (!el) return;
-          const child = Array.from(el.children).find((c) => {
-            const r = (c as HTMLElement).getBoundingClientRect();
-            const center = r.left + r.width / 2;
-            return center > el.getBoundingClientRect().left && center < el.getBoundingClientRect().right;
-          });
-          if (child) {
-            const idx = Array.from(el.children).indexOf(child);
-            setActive(idx);
-          }
-        }}
-        className="flex overflow-x-auto snap-x snap-mandatory gap-5 pb-6 -mx-6 px-6 sm:-mx-10 sm:px-10 scrollbar-hide"
-      >
-        {cases.map((c, i) => (
-          <div
-            key={i}
-            className="snap-start shrink-0 w-[85vw] sm:w-[60vw] lg:w-[45vw] xl:w-[40vw] space-y-4"
-          >
-            <div className="flex items-start gap-4">
-              <span className="font-display text-5xl text-primary leading-none">0{i + 1}</span>
-              <div>
-                <h4 className="font-display text-2xl leading-tight">{c.title}</h4>
-                <p className="mt-1 text-sm text-ink/60">{c.note}</p>
-              </div>
+      {/* Single active treatment case */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={active}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.3 }}
+          className="space-y-4"
+        >
+          <div className="flex items-start gap-4">
+            <span className="font-display text-5xl text-primary leading-none">0{active + 1}</span>
+            <div>
+              <h4 className="font-display text-2xl leading-tight">{c.title}</h4>
+              <p className="mt-1 text-sm text-ink/60">{c.note}</p>
             </div>
+          </div>
+          <div className="grid md:grid-cols-2 gap-5">
             <Gallery items={c.gallery} />
             <BeforeAfterSlider before={c.before} after={c.after} />
           </div>
-        ))}
-      </div>
-
-      <p className="text-xs text-ink/40 mt-1 flex items-center gap-2">
-        <span className="inline-block h-1 w-4 rounded-full bg-ink/20" />
-        Swipe or drag to see more treatment cases
-      </p>
+        </motion.div>
+      </AnimatePresence>
     </div>
   );
 }
