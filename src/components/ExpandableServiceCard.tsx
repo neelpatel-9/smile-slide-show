@@ -25,6 +25,7 @@ export interface ServiceCardData {
   long: string;
   price: string;
   color: string; // tailwind bg class for the pill
+  image?: string;
   cases: TreatmentCase[];
 }
 
@@ -34,7 +35,7 @@ function Gallery({ items }: { items: ServiceMedia[] }) {
   const prev = () => setI((i - 1 + items.length) % items.length);
   const item = items[i];
   return (
-    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl bg-ink/5">
+    <div className="relative aspect-[4/3] md:aspect-[16/11] w-full overflow-hidden rounded-2xl bg-ink/5">
       <AnimatePresence mode="wait">
         <motion.div
           key={i}
