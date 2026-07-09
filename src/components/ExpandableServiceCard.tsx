@@ -166,8 +166,17 @@ function TreatmentCases({ cases }: { cases: TreatmentCase[] }) {
   );
 }
 
-export function ExpandableServiceCard({ data, index }: { data: ServiceCardData; index: number }) {
+export function ExpandableServiceCard({
+  data,
+  index,
+  variant = "compact",
+}: {
+  data: ServiceCardData;
+  index: number;
+  variant?: "wide" | "compact";
+}) {
   const [open, setOpen] = useState(false);
+  const isWide = variant === "wide" && !!data.image;
   return (
     <>
       <motion.button
@@ -178,21 +187,47 @@ export function ExpandableServiceCard({ data, index }: { data: ServiceCardData; 
         viewport={{ once: true, margin: "-40px" }}
         transition={{ duration: 0.5, delay: (index % 3) * 0.08 }}
         whileHover={{ y: -10, scale: 1.03 }}
-        className="group relative text-left w-full rounded-[2rem] p-8 lg:p-10 bg-white border border-ink/8 overflow-hidden shadow-[0_2px_10px_-4px_rgba(0,0,0,0.08)] hover:shadow-[0_30px_60px_-20px_rgba(0,0,0,0.18)] transition-shadow"
+        className={`group relative text-left w-full h-full rounded-[2rem] bg-white border border-ink/8 overflow-hidden shadow-[0_2px_10px_-4px_rgba(0,0,0,0.08)] hover:shadow-[0_30px_60px_-20px_rgba(0,0,0,0.18)] transition-shadow ${
+          isWide ? "p-6 lg:p-8" : "p-8 lg:p-10"
+        }`}
       >
         <div className="absolute -top-16 -right-16 h-56 w-56 rounded-full bg-primary/10 blur-3xl opacity-0 group-hover:opacity-100 transition" />
-        <div className="relative flex items-start justify-between gap-4">
-          <span className="text-[10px] uppercase tracking-[0.3em] text-primary">{data.tag}</span>
-          <span className="font-display text-2xl text-ink/30">0{index + 1}</span>
-        </div>
-        <h3 className="relative font-display text-4xl lg:text-5xl mt-14 leading-[1] text-primary">{data.name}</h3>
-        <p className="relative mt-4 text-sm text-ink/60 max-w-xs">{data.desc}</p>
-        <div className="relative mt-10 flex items-center justify-between">
-          <span className="text-xs uppercase tracking-[0.25em] text-ink/50">{data.price}</span>
-          <span className="inline-flex items-center justify-center h-11 px-8 rounded-full bg-ink text-ivory text-[11px] uppercase tracking-[0.25em] group-hover:bg-primary transition-colors">
-            Tap to open
-          </span>
-        </div>
+        {isWide ? (
+          <div className="relative grid grid-cols-5 gap-6 items-center h-full">
+            <div className="col-span-3 flex flex-col h-full">
+              <div className="flex items-start justify-between gap-4">
+                <span className="font-display text-2xl text-ink/30">0{index + 1}</span>
+                <span className="text-[10px] uppercase tracking-[0.3em] text-primary bg-primary/10 px-3 py-1 rounded-full">{data.tag}</span>
+              </div>
+              <h3 className="font-display text-3xl lg:text-4xl mt-6 leading-[1.05] text-primary">{data.name}</h3>
+              <p className="mt-3 text-sm text-ink/60">{data.desc}</p>
+              <div className="mt-auto pt-6 flex items-center justify-between gap-4">
+                <span className="text-xs uppercase tracking-[0.25em] text-ink/50">{data.price}</span>
+                <span className="inline-flex items-center justify-center h-10 px-6 rounded-full bg-ink text-ivory text-[11px] uppercase tracking-[0.25em] group-hover:bg-primary transition-colors">
+                  Book now →
+                </span>
+              </div>
+            </div>
+            <div className="col-span-2 h-full min-h-[220px] rounded-2xl overflow-hidden">
+              <img src={data.image} alt={data.name} className="w-full h-full object-cover" />
+            </div>
+          </div>
+        ) : (
+          <div className="relative flex flex-col h-full">
+            <div className="flex items-start justify-between gap-4">
+              <span className="font-display text-2xl text-ink/30">0{index + 1}</span>
+              <span className="text-[10px] uppercase tracking-[0.3em] text-primary bg-primary/10 px-3 py-1 rounded-full">{data.tag}</span>
+            </div>
+            <h3 className="font-display text-3xl lg:text-4xl mt-8 leading-[1.05] text-primary">{data.name}</h3>
+            <p className="mt-3 text-sm text-ink/60">{data.desc}</p>
+            <div className="mt-auto pt-8 flex items-center justify-between gap-4">
+              <span className="text-xs uppercase tracking-[0.25em] text-ink/50">{data.price}</span>
+              <span className="inline-flex items-center justify-center h-10 px-6 rounded-full bg-ink text-ivory text-[11px] uppercase tracking-[0.25em] group-hover:bg-primary transition-colors">
+                Book now →
+              </span>
+            </div>
+          </div>
+        )}
       </motion.button>
 
       <AnimatePresence>
@@ -202,7 +237,7 @@ export function ExpandableServiceCard({ data, index }: { data: ServiceCardData; 
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setOpen(false)}
-            className="fixed inset-0 z-50 bg-ink/70 backdrop-blur-sm p-4 sm:p-6 overflow-y-auto grid place-items-start sm:place-items-center"
+            className="fixed inset-0 z-50 bg-ink/70 backdrop-blur-sm p-3 sm:p-5 grid place-items-center"
           >
             <motion.div
               initial={{ opacity: 0, y: 40, scale: 0.96 }}
@@ -210,13 +245,17 @@ export function ExpandableServiceCard({ data, index }: { data: ServiceCardData; 
               exit={{ opacity: 0, y: 40, scale: 0.96 }}
               transition={{ type: "spring", stiffness: 240, damping: 28 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-[1400px] my-6 rounded-[2rem] bg-ivory overflow-hidden shadow-2xl"
+              className="relative w-full max-w-[1300px] max-h-[94vh] rounded-[2rem] bg-ivory overflow-hidden shadow-2xl flex flex-col"
             >
               {/* Top bar with appointment slide */}
-              <div className="sticky top-0 z-10 flex items-center gap-4 bg-ivory/95 backdrop-blur border-b border-ink/8 px-5 py-4">
-                <div className="flex-1 max-w-md">
+              <div className="shrink-0 flex items-center gap-4 bg-ivory/95 backdrop-blur border-b border-ink/8 px-5 py-3">
+                <div className="min-w-0 flex-1">
+                  <p className="text-[9px] uppercase tracking-[0.3em] text-primary">{data.tag}</p>
+                  <h2 className="font-display text-xl lg:text-2xl leading-tight truncate">{data.name}</h2>
+                </div>
+                <div className="hidden sm:block w-72 shrink-0">
                   <SlideToConfirm
-                    label="Slide to book appointment"
+                    label="Book appointment"
                     confirmedLabel="Opening booking"
                     size="sm"
                     onConfirm={() => (window.location.href = "/contact")}
@@ -224,34 +263,23 @@ export function ExpandableServiceCard({ data, index }: { data: ServiceCardData; 
                 </div>
                 <button
                   onClick={() => setOpen(false)}
-                  className="h-11 w-11 rounded-full border border-ink/15 grid place-items-center hover:bg-cream"
+                  className="h-10 w-10 rounded-full border border-ink/15 grid place-items-center hover:bg-cream shrink-0"
                   aria-label="Close"
                 >
                   <X className="h-5 w-5" />
                 </button>
               </div>
 
-              <div className="p-6 lg:p-10">
-                <p className="text-[10px] uppercase tracking-[0.3em] text-primary">{data.tag}</p>
-                <h2 className="font-display text-4xl lg:text-6xl mt-2 leading-[1]">{data.name}</h2>
-                <p className="mt-5 text-ink/70 max-w-2xl">{data.long}</p>
-
-                <div className="mt-10">
-                  <p className="text-[10px] uppercase tracking-[0.3em] text-primary mb-4">— Real treatments · 01 to 0{data.cases.length}</p>
+              <div className="flex-1 overflow-y-auto px-5 lg:px-8 py-5">
+                <p className="text-ink/70 text-sm max-w-2xl">{data.long}</p>
+                <div className="mt-5">
                   <TreatmentCases cases={data.cases} />
                 </div>
-
-                <div className="mt-10 flex flex-wrap items-center justify-between gap-6 border-t border-ink/10 pt-6">
-                  <div>
-                    <p className="text-xs uppercase tracking-[0.25em] text-ink/50">Investment starts at</p>
-                    <p className="font-display text-3xl mt-1">{data.price}</p>
-                  </div>
-                  <div className="w-full sm:w-80">
-                    <SlideToConfirm
-                      label={`Book ${data.name}`}
-                      onConfirm={() => (window.location.href = "/contact")}
-                    />
-                  </div>
+                <div className="sm:hidden mt-6">
+                  <SlideToConfirm
+                    label="Book appointment"
+                    onConfirm={() => (window.location.href = "/contact")}
+                  />
                 </div>
               </div>
             </motion.div>
