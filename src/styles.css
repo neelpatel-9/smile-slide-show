@@ -230,3 +230,12 @@
   &::-webkit-scrollbar { display: none; }
 }
 
+@utility cream-texture {
+  background-color: var(--cream);
+  background-image:
+    radial-gradient(oklch(0 0 0 / 0.055) 1px, transparent 1.2px),
+    radial-gradient(oklch(0 0 0 / 0.035) 1px, transparent 1.2px);
+  background-size: 6px 6px, 14px 14px;
+  background-position: 0 0, 3px 3px;
+}
+

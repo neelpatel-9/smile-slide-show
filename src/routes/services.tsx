@@ -115,7 +115,7 @@ const LAYOUT: Array<{ variant: "wide" | "compact"; span: string }> = [
 function Services() {
   return (
     <PageShell>
-      <section className="px-6 lg:px-10 pt-16 pb-24">
+      <section className="cream-texture px-6 lg:px-10 pt-16 pb-24">
         <div className="mx-auto max-w-[1400px]">
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-14">
             <div>
@@ -145,7 +145,7 @@ function Services() {
         </div>
       </section>
 
-      <section className="px-6 lg:px-10 py-24 bg-cream">
+      <section className="cream-texture px-6 lg:px-10 py-24">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="font-display text-5xl lg:text-6xl">Not sure which one you need?</h2>
           <p className="mt-6 text-ink/70">That's what the consultation is for. Slide to book — we'll figure it out together.</p>
