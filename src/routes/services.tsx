@@ -126,13 +126,6 @@ function Services() {
               </h1>
               <p className="mt-6 text-ink/60 max-w-lg">Tap any service to open the gallery — five real treatment cases per service, each with photos and a drag-to-reveal before &amp; after.</p>
             </div>
-            <div className="w-full lg:w-96 shrink-0">
-              <SlideToConfirm
-                label="Slide to book an appointment"
-                confirmedLabel="Opening booking"
-                onConfirm={() => (window.location.href = "/contact")}
-              />
-            </div>
           </div>
 
           <div className="grid md:grid-cols-5 gap-5 auto-rows-fr">
