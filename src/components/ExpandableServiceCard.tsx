@@ -182,7 +182,7 @@ export function ExpandableServiceCard({
         viewport={{ once: true, margin: "-40px" }}
         transition={{ duration: 0.5, delay: (index % 3) * 0.08 }}
         whileHover={{ y: -10, scale: 1.03 }}
-        className={`group relative text-left w-full h-full rounded-[2rem] cream-texture border border-ink/8 overflow-hidden shadow-[0_2px_10px_-4px_rgba(0,0,0,0.08)] hover:shadow-[0_30px_60px_-20px_rgba(0,0,0,0.18)] transition-shadow ${
+        className={`group relative text-left w-full h-full rounded-[2rem] bg-white border border-ink/8 overflow-hidden shadow-[0_2px_10px_-4px_rgba(0,0,0,0.08)] hover:shadow-[0_30px_60px_-20px_rgba(0,0,0,0.18)] transition-shadow ${
           isWide ? "p-6 lg:p-8" : "p-8 lg:p-10"
         }`}
       >
