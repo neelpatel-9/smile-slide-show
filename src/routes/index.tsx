@@ -237,13 +237,6 @@ function Index() {
               </h2>
               <p className="mt-6 text-ink/60 max-w-lg">Tap any card to hear the story behind the smile. Rest of the page softens away so it's just you and them.</p>
             </div>
-            <div className="w-full lg:w-80 shrink-0">
-              <SlideToConfirm
-                label="Slide to book appointment"
-                confirmedLabel="Opening booking"
-                onConfirm={() => (window.location.href = "/contact")}
-              />
-            </div>
           </div>
         </div>
         <VideoReviewsMarquee items={VIDEO_REVIEWS} />
