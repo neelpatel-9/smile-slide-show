@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { Star, Sparkles, ArrowUpRight, Award, Users } from "lucide-react";
 import { PageShell } from "@/components/SiteChrome";
 import { SlideToConfirm } from "@/components/SlideToConfirm";
-import { ExpandableServiceCard, type ServiceCardData } from "@/components/ExpandableServiceCard";
+import { VideoReviewsMarquee, type VideoReview } from "@/components/VideoReviewsMarquee";
 import drLakshmiAsset from "@/assets/dr-lakshmi.png.asset.json";
 const drLakshmi = drLakshmiAsset.url;
 import smileMacro from "@/assets/smile-macro.jpg";
@@ -25,49 +25,14 @@ const galleryHome = [
   { type: "image" as const, src: smileMacro, caption: "Final Result" },
 ];
 
-const SERVICES: ServiceCardData[] = [
-  { name: "Smile Design", tag: "Signature", desc: "Veneers, whitening, contouring — designed around your face.", long: "Every smile is designed to your face — not a template. Digital mock-up first, hand-layered veneers second.", price: "From ₹18,000/tooth", color: "bg-[oklch(0.96_0.02_50)]", image: smileMacro, cases: [
-    { title: "Veneer makeover", note: "10 upper veneers, face-first mock-up", gallery: [galleryHome[0], galleryHome[3]], before: before1, after: smileMacro },
-    { title: "Whitening upgrade", note: "In-chair whitening + home kit", gallery: [galleryHome[4], galleryHome[1]], before: before1, after: smileMacro },
-    { title: "Gum contouring", note: "Laser gum lift for gummy smile", gallery: [galleryHome[2], galleryHome[0]], before: before1, after: smileMacro },
-    { title: "Smile mock-up", note: "Digital preview before treatment", gallery: [galleryHome[3], galleryHome[4]], before: before1, after: smileMacro },
-    { title: "Full mouth rehab", note: "Bite rebuild + aesthetics", gallery: [galleryHome[1], galleryHome[2]], before: before1, after: smileMacro },
-  ]},
-  { name: "Dental Implants", tag: "Osstem · Nobel", desc: "Fellowship-trained implants that look and feel like your own.", long: "Fellowship-trained on Osstem & Nobel, guided by 3D CT planning.", price: "From ₹35,000", color: "bg-[oklch(0.94_0.03_35)]", image: t1, cases: [
-    { title: "Single tooth", note: "One implant, one crown", gallery: [galleryHome[3], galleryHome[1]], before: before1, after: t1 },
-    { title: "Full arch", note: "All-on-4 full mouth reconstruction", gallery: [galleryHome[2], galleryHome[0]], before: before1, after: t1 },
-    { title: "Immediate implant", note: "Tooth out, implant same day", gallery: [galleryHome[1], galleryHome[3]], before: before1, after: t1 },
-    { title: "Bone grafting", note: "Ridge augmentation before implant", gallery: [galleryHome[0], galleryHome[2]], before: before1, after: t1 },
-    { title: "Implant bridge", note: "Three-unit bridge on two implants", gallery: [galleryHome[4], galleryHome[3]], before: before1, after: t1 },
-  ]},
-  { name: "Root Canal", tag: "Microscopic", desc: "Painless endodontics under a surgical microscope.", long: "A surgical microscope and modern anaesthetics — one or two visits, almost no post-op pain.", price: "From ₹6,500", color: "bg-[oklch(0.95_0.02_20)]", image: t3, cases: [
-    { title: "Molar RCT", note: "Microscopic molar root canal", gallery: [galleryHome[2], galleryHome[3]], before: before1, after: smileMacro },
-    { title: "Anterior RCT", note: "Front tooth, single visit", gallery: [galleryHome[0], galleryHome[1]], before: before1, after: smileMacro },
-    { title: "Re-treatment", note: "Failed RCT corrected under microscope", gallery: [galleryHome[3], galleryHome[2]], before: before1, after: smileMacro },
-    { title: "Precision case", note: "Calcified canal navigation", gallery: [galleryHome[1], galleryHome[4]], before: before1, after: smileMacro },
-    { title: "One-visit endo", note: "Single-sitting root canal", gallery: [galleryHome[4], galleryHome[0]], before: before1, after: smileMacro },
-  ]},
-  { name: "Orthodontics", tag: "Aligners & Braces", desc: "Discreet clear aligners for adults and teens.", long: "Clear aligners for adults, ceramic and metal braces for teens.", price: "From ₹80,000", color: "bg-[oklch(0.96_0.02_75)]", image: t4, cases: [
-    { title: "Clear aligners", note: "Invisible trays for adults", gallery: [galleryHome[3], galleryHome[0]], before: before1, after: t1 },
-    { title: "Ceramic braces", note: "Tooth-coloured brackets", gallery: [galleryHome[1], galleryHome[4]], before: before1, after: t1 },
-    { title: "Metal braces", note: "Fast, reliable correction", gallery: [galleryHome[2], galleryHome[1]], before: before1, after: t1 },
-    { title: "Teen alignment", note: "Growth-phase correction", gallery: [galleryHome[0], galleryHome[3]], before: before1, after: t1 },
-    { title: "Bite correction", note: "Open bite closed with aligners", gallery: [galleryHome[4], galleryHome[2]], before: before1, after: t1 },
-  ]},
-  { name: "Laser Dentistry", tag: "Precision", desc: "Faster healing, less bleeding, no drills where possible.", long: "Where possible we swap scalpels for lasers — less bleeding, dramatically faster healing.", price: "From ₹3,500", color: "bg-[oklch(0.95_0.02_10)]", image: t2, cases: [
-    { title: "Gum contouring", note: "Laser gum lift, no stitches", gallery: [galleryHome[2], galleryHome[1]], before: before1, after: smileMacro },
-    { title: "Frenectomy", note: "Tongue-tie release in minutes", gallery: [galleryHome[0], galleryHome[3]], before: before1, after: smileMacro },
-    { title: "Soft tissue", note: "Lesion removal with laser", gallery: [galleryHome[1], galleryHome[2]], before: before1, after: smileMacro },
-    { title: "Laser whitening", note: "Accelerated in-chair whitening", gallery: [galleryHome[4], galleryHome[0]], before: before1, after: smileMacro },
-    { title: "Periodontal therapy", note: "Laser gum pocket cleaning", gallery: [galleryHome[3], galleryHome[4]], before: before1, after: smileMacro },
-  ]},
-  { name: "Pediatric Care", tag: "Gentle", desc: "First visits that feel like play, not a procedure.", long: "First visits designed as an experience — so kids grow up thinking dental chairs are friendly places.", price: "From ₹1,500", color: "bg-[oklch(0.96_0.02_90)]", image: clinic, cases: [
-    { title: "First dental visit", note: "Child-friendly introduction", gallery: [galleryHome[1], galleryHome[0]], before: before1, after: t1 },
-    { title: "Sealants", note: "Pit & fissure protection", gallery: [galleryHome[3], galleryHome[1]], before: before1, after: t1 },
-    { title: "Fluoride treatment", note: "Strengthening young enamel", gallery: [galleryHome[0], galleryHome[4]], before: before1, after: t1 },
-    { title: "Kids filling", note: "Tooth-coloured paediatric filling", gallery: [galleryHome[2], galleryHome[3]], before: before1, after: t1 },
-    { title: "Habit counselling", note: "Thumb-sucking guidance", gallery: [galleryHome[4], galleryHome[2]], before: before1, after: t1 },
-  ]},
+const VIDEO_REVIEWS: VideoReview[] = [
+  { name: "Ananya S.", city: "Indiranagar", poster: smileMacro, treatment: "Smile Design", rating: 5, quote: "Dr. Lakshmi and her team made my smile design journey feel curated, not clinical. My veneers look exactly like the mock-up promised." },
+  { name: "Rahul M.", city: "HBR Layout", poster: t1, treatment: "Implants", rating: 5, quote: "Two implants, zero pain. The microscope work is on another level — you can literally feel the precision." },
+  { name: "Joanna K.", city: "Warsaw", poster: t2, treatment: "Veneers", rating: 5, quote: "Flew from Poland for veneers on a recommendation. Worth every kilometre. Warm, honest, world-class." },
+  { name: "Priya N.", city: "Whitefield", poster: clinic, treatment: "Consultation", rating: 5, quote: "It felt like a hotel, not a hospital. The team remembers your name and treatment plans come with real options." },
+  { name: "Kiran R.", city: "Hennur", poster: t3, treatment: "Root Canal", rating: 5, quote: "Root canal I had been dreading for a year. Done in one visit, zero pain. I ate biryani that evening." },
+  { name: "Divya S.", city: "Kalyan Nagar", poster: t4, treatment: "Pediatric", rating: 5, quote: "Took my 6-year-old for his first visit. They turned it into a story he wanted to tell." },
+  { name: "Meera G.", city: "Sarjapur", poster: before1, treatment: "Orthodontics", rating: 5, quote: "Aligners journey took 14 months. Every check-in was on time. My results beat the initial projection." },
 ];
 
 
@@ -261,16 +226,16 @@ function Index() {
         </div>
       </section>
 
-      {/* SERVICES */}
-      <section id="services" className="px-6 lg:px-10 py-24 bg-cream grain">
-        <div className="mx-auto max-w-[1400px]">
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-10">
+      {/* VIDEO REVIEWS — auto-scrolling marquee */}
+      <section id="video-reviews" className="py-24 bg-cream grain overflow-hidden">
+        <div className="mx-auto max-w-[1400px] px-6 lg:px-10 mb-10">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
             <div>
-              <p className="text-xs uppercase tracking-[0.3em] text-primary mb-4">— Six ways in</p>
+              <p className="text-xs uppercase tracking-[0.3em] text-primary mb-4">— In their own voice</p>
               <h2 className="font-display text-5xl lg:text-7xl max-w-2xl leading-[1]">
-                How can we<br />help you today?
+                Real patients.<br />Real stories.
               </h2>
-              <p className="mt-6 text-ink/60 max-w-lg">Tap any curve to see real treatment photos, video from our chair, and a drag-to-reveal before &amp; after.</p>
+              <p className="mt-6 text-ink/60 max-w-lg">Tap any card to hear the story behind the smile. Rest of the page softens away so it's just you and them.</p>
             </div>
             <div className="w-full lg:w-80 shrink-0">
               <SlideToConfirm
@@ -280,24 +245,8 @@ function Index() {
               />
             </div>
           </div>
-          <div className="grid md:grid-cols-5 gap-5 auto-rows-fr">
-            {SERVICES.map((s, i) => {
-              const layout = [
-                { variant: "wide" as const, span: "md:col-span-3" },
-                { variant: "compact" as const, span: "md:col-span-2" },
-                { variant: "compact" as const, span: "md:col-span-2" },
-                { variant: "wide" as const, span: "md:col-span-3" },
-                { variant: "wide" as const, span: "md:col-span-3" },
-                { variant: "compact" as const, span: "md:col-span-2" },
-              ][i];
-              return (
-                <div key={s.name} className={layout.span}>
-                  <ExpandableServiceCard data={s} index={i} variant={layout.variant} />
-                </div>
-              );
-            })}
-          </div>
         </div>
+        <VideoReviewsMarquee items={VIDEO_REVIEWS} />
       </section>
 
       {/* FOUNDER SPLIT */}
