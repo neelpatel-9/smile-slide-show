@@ -226,16 +226,16 @@ function Index() {
         </div>
       </section>
 
-      {/* SERVICES */}
-      <section id="services" className="px-6 lg:px-10 py-24 bg-cream grain">
-        <div className="mx-auto max-w-[1400px]">
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-10">
+      {/* VIDEO REVIEWS — auto-scrolling marquee */}
+      <section id="video-reviews" className="py-24 bg-cream grain overflow-hidden">
+        <div className="mx-auto max-w-[1400px] px-6 lg:px-10 mb-10">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
             <div>
-              <p className="text-xs uppercase tracking-[0.3em] text-primary mb-4">— Six ways in</p>
+              <p className="text-xs uppercase tracking-[0.3em] text-primary mb-4">— In their own voice</p>
               <h2 className="font-display text-5xl lg:text-7xl max-w-2xl leading-[1]">
-                How can we<br />help you today?
+                Real patients.<br />Real stories.
               </h2>
-              <p className="mt-6 text-ink/60 max-w-lg">Tap any curve to see real treatment photos, video from our chair, and a drag-to-reveal before &amp; after.</p>
+              <p className="mt-6 text-ink/60 max-w-lg">Tap any card to hear the story behind the smile. Rest of the page softens away so it's just you and them.</p>
             </div>
             <div className="w-full lg:w-80 shrink-0">
               <SlideToConfirm
@@ -245,24 +245,8 @@ function Index() {
               />
             </div>
           </div>
-          <div className="grid md:grid-cols-5 gap-5 auto-rows-fr">
-            {SERVICES.map((s, i) => {
-              const layout = [
-                { variant: "wide" as const, span: "md:col-span-3" },
-                { variant: "compact" as const, span: "md:col-span-2" },
-                { variant: "compact" as const, span: "md:col-span-2" },
-                { variant: "wide" as const, span: "md:col-span-3" },
-                { variant: "wide" as const, span: "md:col-span-3" },
-                { variant: "compact" as const, span: "md:col-span-2" },
-              ][i];
-              return (
-                <div key={s.name} className={layout.span}>
-                  <ExpandableServiceCard data={s} index={i} variant={layout.variant} />
-                </div>
-              );
-            })}
-          </div>
         </div>
+        <VideoReviewsMarquee items={VIDEO_REVIEWS} />
       </section>
 
       {/* FOUNDER SPLIT */}
