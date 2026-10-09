@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep the homepage opening in the browser-safe ClinicHero component with presentation tokens in the global stylesheet, so motion and layout stay isolated from other pages.

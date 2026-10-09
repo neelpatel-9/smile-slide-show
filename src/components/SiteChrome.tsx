@@ -41,7 +41,7 @@ export function Header() {
   return (
     <>
       <header
-        className={`fixed top-0 inset-x-0 z-40 transition-all duration-300 ${scrolled ? "bg-ivory/85 backdrop-blur-xl border-b border-ink/8" : "bg-transparent"}`}
+        className={`fixed top-0 inset-x-0 z-40 transition-all duration-300 ${scrolled ? "bg-ivory/85 backdrop-blur-xl border-b border-ink/8" : "bg-ivory border-b border-ink/8"}`}
       >
         <div className="mx-auto max-w-[1400px] px-6 lg:px-10 h-20 flex items-center justify-between">
           <Wordmark />
