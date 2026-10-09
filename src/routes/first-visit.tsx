@@ -7,6 +7,8 @@ import clinic from "@/assets/clinic-interior.jpg";
 export const Route = createFileRoute("/first-visit")({
   head: () => ({
     meta: [
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { title: "Your First Visit — Dental Den, Hennur" },
       { name: "description", content: "What to bring, what to expect, and how a new patient visit at Dental Den actually feels." },
       { property: "og:title", content: "Your First Visit — Dental Den" },

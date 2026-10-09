@@ -8,6 +8,8 @@ import { SlideToConfirm } from "@/components/SlideToConfirm";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { title: "Book an Appointment — Dental Den, Hennur Bengaluru" },
       { name: "description", content: "Visit Dental Den in Hennur, Bengaluru. Call, WhatsApp or book online. Single location. Warm, unhurried consultations." },
       { property: "og:title", content: "Contact & Book — Dental Den" },

@@ -13,6 +13,8 @@ import before1 from "@/assets/before-1.jpg";
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { title: "Services — Dental Den, Hennur Bengaluru" },
       { name: "description", content: "Smile design, implants, root canal, orthodontics, laser and pediatric dentistry. Organised by what you're actually here for." },
       { property: "og:title", content: "Dental services — Dental Den" },

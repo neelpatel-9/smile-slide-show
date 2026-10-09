@@ -8,6 +8,8 @@ import { SlideToConfirm } from "@/components/SlideToConfirm";
 export const Route = createFileRoute("/den-care")({
   head: () => ({
     meta: [
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { title: "Den Care Membership — Your Smile, Covered Year-Round" },
       { name: "description", content: "Three-tier annual dental membership from Dental Den, Hennur. Cleanings, checkups, and priority booking treated like a product, not an afterthought." },
       { property: "og:title", content: "Den Care — Dental Den" },

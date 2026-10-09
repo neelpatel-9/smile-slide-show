@@ -7,6 +7,8 @@ import { SlideToConfirm } from "@/components/SlideToConfirm";
 export const Route = createFileRoute("/reviews")({
   head: () => ({
     meta: [
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { title: "Patient Reviews — 4.7★ · Dental Den" },
       { name: "description", content: "183+ Google reviews at 4.7★. Real patient stories from Hennur, Bengaluru and beyond." },
       { property: "og:title", content: "Reviews — Dental Den" },

@@ -10,6 +10,10 @@ import clinic from "@/assets/clinic-interior.jpg";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
+      { property: "og:image", content: drLakshmi },
+      { name: "twitter:image", content: drLakshmi },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { title: "About Dr. Lakshmi — Dental Den, Hennur" },
       { name: "description", content: "Founder-led practice in Hennur, Bengaluru. Dr. Lakshmi Roopesh — BDS, NYU aesthetic dentistry, Osstem & Nobel Biocare fellowships, mentored by Dr. Sandesh Mayekar." },
       { property: "og:title", content: "About Dr. Lakshmi — Dental Den" },

@@ -86,8 +86,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Dental Den — We Design Your Smile · Hennur, Bengaluru" },
       { name: "twitter:description", content: "Premium esthetic dentistry in Hennur, Bengaluru. 16 years, 25,000+ patients, 4.7★. Smile design, implants, root canal & the new Den Care membership." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/aea3797d-71a4-4e8f-9dcb-35dce2d5fc14/id-preview-757ae5c0--0cfb25fc-52bc-424d-af48-38504155ed43.lovable.app-1783415144269.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/aea3797d-71a4-4e8f-9dcb-35dce2d5fc14/id-preview-757ae5c0--0cfb25fc-52bc-424d-af48-38504155ed43.lovable.app-1783415144269.png" },
     ],
     links: [
       {

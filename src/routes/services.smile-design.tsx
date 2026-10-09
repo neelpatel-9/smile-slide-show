@@ -5,11 +5,12 @@ import smile from "@/assets/smile-macro.jpg";
 export const Route = createFileRoute("/services/smile-design")({
   head: () => ({
     meta: [
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { title: "Smile Design — Dental Den, Hennur" },
       { name: "description", content: "Digitally planned veneers, whitening and gum sculpting in Hennur, Bengaluru. See your new smile before we start." },
       { property: "og:title", content: "Smile Design — Dental Den" },
       { property: "og:description", content: "Veneers, whitening and contouring, designed around your face." },
-      { property: "og:image", content: "https://www.dentalden.in/og-smile.jpg" },
     ],
   }),
   component: () => (
