@@ -2,7 +2,7 @@ import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight, Check } from "lucide-react";
 
-type Tone = "primary" | "ink" | "ivory" | "ghost";
+type Tone = "primary" | "ink" | "ivory" | "ghost" | "cinematic";
 
 interface Props {
   label: string;
@@ -16,6 +16,12 @@ interface Props {
 }
 
 const toneStyles: Record<Tone, { track: string; thumb: string; text: string; done: string }> = {
+  cinematic: {
+    track: "bg-ink border border-ivory/10",
+    thumb: "bg-primary text-primary-foreground",
+    text: "text-ivory",
+    done: "bg-primary text-primary-foreground",
+  },
   primary: {
     track: "bg-primary/10 border border-primary/30",
     thumb: "bg-primary text-primary-foreground shadow-[0_10px_30px_-8px_oklch(0.52_0.19_27/0.6)]",

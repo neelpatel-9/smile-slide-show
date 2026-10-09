@@ -5,6 +5,8 @@ import clinic from "@/assets/clinic-interior.jpg";
 export const Route = createFileRoute("/services/root-canal")({
   head: () => ({
     meta: [
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { title: "Painless Root Canal — Microscopic Endodontics · Dental Den" },
       { name: "description", content: "Microscopic root canal treatment in Hennur, Bengaluru. Trained under Dr. Vivek Hegde. Save your tooth, painlessly." },
       { property: "og:title", content: "Root Canal Treatment — Dental Den" },

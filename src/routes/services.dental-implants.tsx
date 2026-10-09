@@ -5,6 +5,8 @@ import clinic from "@/assets/clinic-interior.jpg";
 export const Route = createFileRoute("/services/dental-implants")({
   head: () => ({
     meta: [
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { title: "Dental Implants — Osstem & Nobel Biocare · Dental Den" },
       { name: "description", content: "Fellowship-trained implantology in Hennur, Bengaluru. Single-tooth to full-arch, guided by 3D CT and delivered by Dr. Lakshmi." },
       { property: "og:title", content: "Dental Implants — Dental Den" },
