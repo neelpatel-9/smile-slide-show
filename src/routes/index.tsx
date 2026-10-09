@@ -1,12 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { useRef, useState } from "react";
 import { Star, Sparkles, ArrowUpRight, Award, Users } from "lucide-react";
 import { PageShell } from "@/components/SiteChrome";
+import { ClinicHero } from "@/components/ClinicHero";
 import { SlideToConfirm } from "@/components/SlideToConfirm";
 import { VideoReviewsMarquee, type VideoReview } from "@/components/VideoReviewsMarquee";
-import drLakshmiAsset from "@/assets/dr-lakshmi.png.asset.json";
-const drLakshmi = drLakshmiAsset.url;
 import smileMacro from "@/assets/smile-macro.jpg";
 import clinic from "@/assets/clinic-interior.jpg";
 import t1 from "@/assets/treatment-1.jpg";
@@ -15,7 +14,17 @@ import t3 from "@/assets/treatment-3.jpg";
 import t4 from "@/assets/treatment-4.jpg";
 import before1 from "@/assets/before-1.jpg";
 
-export const Route = createFileRoute("/")({ component: Index });
+export const Route = createFileRoute("/")({
+  head: () => ({ meta: [
+    { title: "Dental Den — Smile Design & Dentistry in Hennur" },
+    { name: "description", content: "Discover Dental Den in Hennur, Bengaluru. Personalized smile design, dental implants and gentle care with Dr. Lakshmi Roopesh." },
+    { property: "og:title", content: "Dental Den — Smile Design & Dentistry in Hennur" },
+    { property: "og:description", content: "Discover personalized dentistry and smile design with Dr. Lakshmi Roopesh at Dental Den, Bengaluru." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
+  ] }),
+  component: Index,
+});
 
 const galleryHome = [
   { type: "image" as const, src: t1, caption: "After · Smile Design" },
@@ -104,85 +113,9 @@ function BeforeAfter() {
 }
 
 function Index() {
-  const heroRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], [0, 120]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.08]);
-
   return (
     <PageShell>
-      {/* HERO */}
-      <section ref={heroRef} className="relative min-h-[92vh] px-6 lg:px-10 pt-10 pb-20">
-        <div className="mx-auto max-w-[1400px] grid lg:grid-cols-12 gap-10 items-center">
-          <div className="lg:col-span-7 relative z-10">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7 }}
-              className="inline-flex items-center gap-2 rounded-full border border-ink/15 bg-ivory/60 backdrop-blur px-4 py-1.5 text-[11px] uppercase tracking-[0.25em]"
-            >
-              <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
-              Premium esthetic dentistry · Hennur, Bengaluru
-            </motion.div>
-            <motion.h1
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.1, duration: 0.8 }}
-              className="mt-8 font-display text-[clamp(3.5rem,9vw,7.5rem)] leading-[0.95]"
-            >
-              We design<br />
-              your <em className="text-primary not-italic">smile,</em><br />
-              not just teeth.
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.25, duration: 0.8 }}
-              className="mt-8 max-w-lg text-lg text-ink/70 leading-relaxed"
-            >
-              Sixteen years. Twenty-five thousand smiles. One quiet clinic in Hennur where every treatment starts with listening — and every button here starts with a slide.
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-              className="mt-10 max-w-md space-y-3"
-            >
-              <SlideToConfirm
-                label="Slide to book an appointment"
-                confirmedLabel="Taking you to booking"
-                size="lg"
-                onConfirm={() => (window.location.href = "/contact")}
-              />
-              <p className="text-xs text-ink/50 tracking-wide pl-1">
-                Every action on this site is a deliberate slide. Because your smile deserves deliberate care.
-              </p>
-            </motion.div>
-          </div>
-          <div className="lg:col-span-5 relative">
-            <motion.div
-              style={{ y, scale }}
-              className="relative aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl"
-            >
-              <img src={drLakshmi} alt="Dr. Lakshmi, Founder & Dental Surgeon" className="w-full h-full object-cover" />
-              <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-ink/70 to-transparent" />
-              <div className="absolute bottom-6 left-6 text-ivory">
-                <p className="text-[10px] uppercase tracking-[0.3em] opacity-80">Founder</p>
-                <p className="font-display text-2xl mt-1">Dr. Lakshmi Roopesh</p>
-              </div>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.6 }}
-              className="hidden lg:flex absolute -left-16 top-1/3 rotate-[-90deg] origin-left items-center gap-3 text-[10px] uppercase tracking-[0.4em] text-ink/40"
-            >
-              <span className="h-px w-10 bg-ink/30" />
-              Est. 2010 · Bengaluru
-            </motion.div>
-          </div>
-        </div>
-      </section>
+      <ClinicHero />
 
       {/* TRUST MARQUEE */}
       <section className="bg-ink text-ivory overflow-hidden">
