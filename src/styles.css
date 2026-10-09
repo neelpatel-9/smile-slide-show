@@ -252,6 +252,7 @@
   position: relative;
   min-height: 620px;
   height: calc(100svh - 104px);
+  max-height: 900px;
   overflow: hidden;
   background: var(--ink);
   color: var(--ivory);
