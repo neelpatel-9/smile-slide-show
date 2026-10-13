@@ -117,7 +117,7 @@ function DenCare() {
       <section className="px-6 lg:px-10 py-24 bg-cream grain">
         <div className="mx-auto max-w-3xl text-center">
           <p className="text-xs uppercase tracking-[0.3em] text-primary mb-6">— The math</p>
-          <h2 className="font-display text-5xl lg:text-6xl">Break-even<br />in two visits.</h2>
+          <h2 className="font-display text-5xl lg:text-6xl">Break-even<br />in two <em className="text-primary not-italic">visits.</em></h2>
           <p className="mt-6 text-ink/70">Two annual cleanings alone cover the Basic plan. Add a whitening and Classic pays for itself. Add a family and Premium is the obvious call.</p>
           <div className="mt-10 max-w-md mx-auto">
             <SlideToConfirm label="Talk to the team" onConfirm={() => (window.location.href = "/contact")} />

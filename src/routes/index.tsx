@@ -166,7 +166,7 @@ function Index() {
             <div>
               <p className="text-xs uppercase tracking-[0.3em] text-primary mb-4">— In their own voice</p>
               <h2 className="font-display text-5xl lg:text-7xl max-w-2xl leading-[1]">
-                Real patients.<br />Real stories.
+                Real patients.<br />Real <em className="text-primary not-italic">stories.</em>
               </h2>
               <p className="mt-6 text-ink/60 max-w-lg">Tap any card to hear the story behind the smile. Rest of the page softens away so it's just you and them.</p>
             </div>
@@ -229,7 +229,7 @@ function Index() {
           <div className="lg:col-span-5">
             <p className="text-xs uppercase tracking-[0.3em] text-primary mb-4">— Drag it yourself</p>
             <h2 className="font-display text-5xl lg:text-6xl leading-[1.05]">
-              Every smile,<br />designed.
+              Every smile,<br /><em className="text-primary not-italic">designed.</em>
             </h2>
             <p className="mt-6 text-ink/70 max-w-md">Move the handle. This is real work from our smile design suite — veneers, whitening and gentle contouring, choreographed to your face.</p>
             <div className="mt-8 max-w-sm">
@@ -296,7 +296,7 @@ function Index() {
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-14">
             <div>
               <p className="text-xs uppercase tracking-[0.3em] text-primary mb-4">— 4.7★ from 183 reviews</p>
-              <h2 className="font-display text-5xl lg:text-7xl leading-[1]">Trust,<br />in their words.</h2>
+          <h2 className="font-display text-5xl lg:text-7xl leading-[1]">Trust,<br />in their <em className="text-primary not-italic">words.</em></h2>
             </div>
             <Link to="/reviews" className="text-sm uppercase tracking-[0.2em] underline underline-offset-8">All reviews</Link>
           </div>
@@ -332,7 +332,7 @@ function Index() {
         <div className="mx-auto max-w-3xl text-center">
           <Users className="h-6 w-6 text-primary mx-auto mb-6" />
           <h2 className="font-display text-5xl lg:text-7xl leading-[1]">
-            Ready when<br />you are.
+            <em className="text-primary not-italic">Ready</em> when<br />you are.
           </h2>
           <p className="mt-6 text-ink/70">Slide below. We'll take it from there — a warm, unhurried consultation with Dr. Lakshmi's team.</p>
           <div className="mt-10 max-w-md mx-auto">

@@ -67,7 +67,7 @@ function Contact() {
             <div className="absolute -top-20 -right-20 h-72 w-72 rounded-full bg-primary/25 blur-3xl" />
             <div className="relative">
               <p className="text-xs uppercase tracking-[0.3em] text-primary mb-4">— Request an appointment</p>
-              <h2 className="font-display text-4xl mb-8">Tell us a little<br />and we'll take it from there.</h2>
+              <h2 className="font-display text-4xl mb-8">Tell us a little<br />and we'll take it from <em className="text-primary not-italic">there.</em></h2>
               <div className="grid md:grid-cols-2 gap-4">
                 <Field label="Full name" value={form.name} onChange={(v) => setForm({ ...form, name: v })} />
                 <Field label="Phone" value={form.phone} onChange={(v) => setForm({ ...form, phone: v })} />

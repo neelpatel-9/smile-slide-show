@@ -39,8 +39,8 @@ function Reviews() {
             <p className="text-xs uppercase tracking-[0.3em] text-primary mb-6">— In their words</p>
             <h1 className="font-display text-[clamp(3rem,9vw,8rem)] leading-[0.95]">
               183 reviews.<br />
-              <em className="text-primary not-italic">4.7</em> stars.<br />
-              One clinic.
+              4.7 stars.<br />
+              One <em className="text-primary not-italic">clinic.</em>
             </h1>
           </div>
           <div className="lg:col-span-5">
@@ -90,7 +90,7 @@ function Reviews() {
 
       <section className="px-6 lg:px-10 py-24">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="font-display text-5xl lg:text-6xl">Your story could be next.</h2>
+          <h2 className="font-display text-5xl lg:text-6xl">Your story could be <em className="text-primary not-italic">next.</em></h2>
           <div className="mt-10 max-w-md mx-auto">
             <SlideToConfirm label="Book your first visit" onConfirm={() => (window.location.href = "/contact")} />
           </div>

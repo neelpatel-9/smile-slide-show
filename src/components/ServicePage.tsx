@@ -26,7 +26,8 @@ export function ServicePage({ content }: { content: ServiceContent }) {
             <p className="text-xs uppercase tracking-[0.3em] text-primary mb-6">— {content.tag}</p>
             <h1 className="font-display text-[clamp(3rem,8vw,7rem)] leading-[0.95]">
               {content.title}<br />
-              <em className="text-primary not-italic">{content.emphasis}</em>
+              {content.emphasis.split(" ").slice(0, -1).join(" ")} {" "}
+              <em className="text-primary not-italic">{content.emphasis.split(" ").at(-1)}</em>
             </h1>
           </div>
           <div className="lg:col-span-5 space-y-6">
@@ -68,7 +69,7 @@ export function ServicePage({ content }: { content: ServiceContent }) {
         <div className="mx-auto max-w-[1400px] grid lg:grid-cols-12 gap-12">
           <div className="lg:col-span-4">
             <p className="text-xs uppercase tracking-[0.3em] text-primary mb-4">— The journey</p>
-            <h2 className="font-display text-5xl">Step by<br />step.</h2>
+            <h2 className="font-display text-5xl">Step by<br /><em className="text-primary not-italic">step.</em></h2>
           </div>
           <ol className="lg:col-span-8 space-y-6">
             {content.journey.map((step, i) => (
@@ -92,7 +93,7 @@ export function ServicePage({ content }: { content: ServiceContent }) {
         <div className="mx-auto max-w-[1400px] grid lg:grid-cols-12 gap-12">
           <div className="lg:col-span-4">
             <p className="text-xs uppercase tracking-[0.3em] text-primary mb-4">— FAQ</p>
-            <h2 className="font-display text-5xl">Answered<br />honestly.</h2>
+            <h2 className="font-display text-5xl">Answered<br /><em className="text-primary not-italic">honestly.</em></h2>
           </div>
           <div className="lg:col-span-8 divide-y divide-ivory/10 border-y border-ivory/10">
             {content.faq.map((f, i) => (
