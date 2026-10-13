@@ -244,47 +244,39 @@
   background-position: 0 0, 3px 3px;
 }
 
-/* Airy editorial opening; scoped to the homepage. */
+/* Clinic-photo opening; scoped to the homepage. */
 :root {
   --hero-accent: var(--crimson);
-  --hero-photo-shade: linear-gradient(0deg, oklch(0.18 0.008 60 / 0.7), transparent 55%);
+  --hero-photo-shade: linear-gradient(90deg, oklch(0.12 0.008 60 / 0.88), oklch(0.12 0.008 60 / 0.5) 55%, oklch(0.12 0.008 60 / 0.16));
+  --hero-copy: oklch(0.985 0.008 75 / 0.78);
+  --hero-pill: oklch(0.985 0.008 75 / 0.08);
+  --hero-border: oklch(0.985 0.008 75 / 0.25);
 }
-.clinic-hero { overflow: hidden; background: var(--ivory); color: var(--ink); }
-.clinic-hero-inner { max-width: 1400px; margin: auto; padding: 36px 40px 40px; }
-.clinic-hero-top { display: flex; justify-content: space-between; gap: 20px; font-size: 11px; font-weight: 500; letter-spacing: 0; text-transform: uppercase; color: var(--muted-foreground); }
-.clinic-hero-top p:first-child { color: var(--primary); }
-.clinic-hero-top p:last-child { white-space: nowrap; }
-.clinic-hero-content { padding-top: 36px; }
-.clinic-hero-title { margin: 0; font-family: var(--font-display); font-size: 112px; line-height: 0.96; letter-spacing: 0; }
+.clinic-hero { position: relative; overflow: hidden; background: var(--ink); color: var(--ivory); min-height: 650px; height: min(800px, calc(100svh - 120px)); }
+.clinic-hero::after { content: ''; position: absolute; inset: 0; background: var(--hero-photo-shade); pointer-events: none; }
+.clinic-hero-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 57%; animation: clinic-breathe 24s ease-in-out infinite alternate; }
+.clinic-hero-inner { position: relative; z-index: 1; max-width: 1400px; height: 100%; margin: auto; padding: 56px 64px 36px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; }
+.clinic-hero-top { font-size: 11px; font-weight: 500; letter-spacing: 0; text-transform: uppercase; }
+.clinic-hero-top p { padding: 10px 18px; border: 1px solid var(--hero-border); border-radius: 999px; background: var(--hero-pill); }
+.clinic-hero-content { padding-top: 28px; }
+.clinic-hero-title { margin: 0; font-family: var(--font-display); font-size: 96px; line-height: 0.98; letter-spacing: 0; }
 .clinic-hero-title span, .clinic-hero-title em { display: block; }
-.clinic-hero-title em { color: var(--hero-accent); }
-.clinic-hero-actions { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); align-items: center; gap: 70px; margin: 36px 0 42px; }
-.clinic-hero-copy { max-width: 650px; font-size: 19px; line-height: 1.65; color: var(--muted-foreground); }
-.clinic-hero-book { width: 100%; max-width: 350px; display: grid; gap: 12px; justify-self: center; }
-.clinic-hero-book [role="button"] { border-radius: 8px; }
-.clinic-hero-book button { border-radius: 5px; }
-.clinic-hero-image { position: relative; height: 380px; overflow: hidden; border-radius: 8px; }
-.clinic-hero-image::after { content: ""; position: absolute; inset: 0; background: var(--hero-photo-shade); pointer-events: none; }
-.clinic-hero-photo { width: 100%; height: 100%; object-fit: cover; object-position: center 57%; animation: clinic-breathe 24s ease-in-out infinite alternate; transition: object-position 0.8s ease; }
-.clinic-hero-image:hover .clinic-hero-photo { object-position: center 62%; }
-.clinic-hero-caption { position: absolute; z-index: 1; bottom: 24px; left: 28px; right: 28px; display: flex; align-items: center; justify-content: space-between; gap: 20px; color: var(--ivory); }
-.clinic-hero-caption span:first-child { font-family: var(--font-display); font-size: 28px; font-style: italic; }
-.clinic-hero-caption span:last-child { font-size: 10px; text-transform: uppercase; }
+.clinic-hero-title em { color: var(--ivory); }
+.clinic-hero-actions { display: grid; gap: 24px; margin: 24px 0 32px; }
+.clinic-hero-copy { max-width: 465px; font-size: 15px; line-height: 1.7; color: var(--hero-copy); }
+.clinic-hero-book { width: 320px; max-width: 100%; }
+.clinic-hero-caption { font-size: 10px; text-transform: uppercase; color: var(--hero-copy); }
 @keyframes clinic-breathe { from { transform: scale(1); } to { transform: scale(1.035); } }
-@media (min-width: 1440px) { .clinic-hero-title { font-size: 128px; } }
-@media (max-width: 1100px) { .clinic-hero-title { font-size: 96px; } .clinic-hero-actions { gap: 36px; } }
+@media (max-width: 1100px) { .clinic-hero-title { font-size: 80px; } .clinic-hero-inner { padding: 40px; } }
 @media (max-width: 767px) {
-  .clinic-hero-inner { padding: 28px 24px 24px; }
-  .clinic-hero-top { font-size: 9px; gap: 16px; }
-  .clinic-hero-content { padding-top: 32px; }
-  .clinic-hero-title { font-size: 64px; line-height: 1; }
-  .clinic-hero-actions { grid-template-columns: 1fr; gap: 22px; margin: 24px 0 28px; }
-  .clinic-hero-copy { font-size: 15px; line-height: 1.6; }
-  .clinic-hero-book { justify-self: start; max-width: 350px; gap: 10px; }
-  .clinic-hero-image { height: 280px; }
-  .clinic-hero-caption { bottom: 20px; left: 20px; right: 20px; align-items: end; }
-  .clinic-hero-caption span:first-child { font-size: 24px; max-width: 150px; }
-  .clinic-hero-caption span:last-child { text-align: right; max-width: 90px; line-height: 1.5; }
+  .clinic-hero { min-height: 610px; height: calc(100svh - 110px); max-height: 760px; }
+  .clinic-hero-inner { padding: 36px 24px; }
+  .clinic-hero-top { font-size: 9px; }
+  .clinic-hero-content { padding-top: 28px; }
+  .clinic-hero-title { font-size: 60px; line-height: 1; }
+  .clinic-hero-actions { gap: 22px; margin: 24px 0 28px; }
+  .clinic-hero-copy { font-size: 14px; line-height: 1.6; }
+  .clinic-hero-photo { object-position: 60% center; }
 }
-@media (max-width: 380px) { .clinic-hero-title { font-size: 56px; } }
-@media (prefers-reduced-motion: reduce) { .clinic-hero-photo { animation: none; transition: none; } }
+@media (max-width: 380px) { .clinic-hero-title { font-size: 52px; } }
+@media (prefers-reduced-motion: reduce) { .clinic-hero-photo { animation: none; } }
