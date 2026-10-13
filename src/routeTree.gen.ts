@@ -9,46 +9,21 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as ServicesRouteImport } from './routes/services'
-import { Route as ReviewsRouteImport } from './routes/reviews'
-import { Route as FirstVisitRouteImport } from './routes/first-visit'
-import { Route as DenCareRouteImport } from './routes/den-care'
-import { Route as ContactRouteImport } from './routes/contact'
-import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ServicesSmileDesignRouteImport } from './routes/services.smile-design'
-import { Route as ServicesRootCanalRouteImport } from './routes/services.root-canal'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as DenCareRouteImport } from './routes/den-care'
+import { Route as FirstVisitRouteImport } from './routes/first-visit'
+import { Route as ReviewsRouteImport } from './routes/reviews'
+import { Route as ServicesRouteImport } from './routes/services'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ServicesDentalImplantsRouteImport } from './routes/services.dental-implants'
+import { Route as ServicesRootCanalRouteImport } from './routes/services.root-canal'
+import { Route as ServicesSmileDesignRouteImport } from './routes/services.smile-design'
 
-const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
-  id: '/sitemap.xml',
-  path: '/sitemap.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ServicesRoute = ServicesRouteImport.update({
-  id: '/services',
-  path: '/services',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ReviewsRoute = ReviewsRouteImport.update({
-  id: '/reviews',
-  path: '/reviews',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const FirstVisitRoute = FirstVisitRouteImport.update({
-  id: '/first-visit',
-  path: '/first-visit',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DenCareRoute = DenCareRouteImport.update({
-  id: '/den-care',
-  path: '/den-care',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ContactRoute = ContactRouteImport.update({
-  id: '/contact',
-  path: '/contact',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -56,14 +31,39 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ServicesSmileDesignRoute = ServicesSmileDesignRouteImport.update({
-  id: '/smile-design',
-  path: '/smile-design',
+const DenCareRoute = DenCareRouteImport.update({
+  id: '/den-care',
+  path: '/den-care',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FirstVisitRoute = FirstVisitRouteImport.update({
+  id: '/first-visit',
+  path: '/first-visit',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReviewsRoute = ReviewsRouteImport.update({
+  id: '/reviews',
+  path: '/reviews',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesRoute = ServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesDentalImplantsRoute = ServicesDentalImplantsRouteImport.update({
+  id: '/dental-implants',
+  path: '/dental-implants',
   getParentRoute: () => ServicesRoute,
 } as any)
 const ServicesRootCanalRoute = ServicesRootCanalRouteImport.update({
@@ -71,9 +71,9 @@ const ServicesRootCanalRoute = ServicesRootCanalRouteImport.update({
   path: '/root-canal',
   getParentRoute: () => ServicesRoute,
 } as any)
-const ServicesDentalImplantsRoute = ServicesDentalImplantsRouteImport.update({
-  id: '/dental-implants',
-  path: '/dental-implants',
+const ServicesSmileDesignRoute = ServicesSmileDesignRouteImport.update({
+  id: '/smile-design',
+  path: '/smile-design',
   getParentRoute: () => ServicesRoute,
 } as any)
 
@@ -172,46 +172,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/sitemap.xml': {
-      id: '/sitemap.xml'
-      path: '/sitemap.xml'
-      fullPath: '/sitemap.xml'
-      preLoaderRoute: typeof SitemapDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/services': {
-      id: '/services'
-      path: '/services'
-      fullPath: '/services'
-      preLoaderRoute: typeof ServicesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/reviews': {
-      id: '/reviews'
-      path: '/reviews'
-      fullPath: '/reviews'
-      preLoaderRoute: typeof ReviewsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/first-visit': {
-      id: '/first-visit'
-      path: '/first-visit'
-      fullPath: '/first-visit'
-      preLoaderRoute: typeof FirstVisitRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/den-care': {
-      id: '/den-care'
-      path: '/den-care'
-      fullPath: '/den-care'
-      preLoaderRoute: typeof DenCareRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/contact': {
-      id: '/contact'
-      path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof ContactRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -221,18 +186,53 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/services/smile-design': {
-      id: '/services/smile-design'
-      path: '/smile-design'
-      fullPath: '/services/smile-design'
-      preLoaderRoute: typeof ServicesSmileDesignRouteImport
+    '/den-care': {
+      id: '/den-care'
+      path: '/den-care'
+      fullPath: '/den-care'
+      preLoaderRoute: typeof DenCareRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/first-visit': {
+      id: '/first-visit'
+      path: '/first-visit'
+      fullPath: '/first-visit'
+      preLoaderRoute: typeof FirstVisitRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reviews': {
+      id: '/reviews'
+      path: '/reviews'
+      fullPath: '/reviews'
+      preLoaderRoute: typeof ReviewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services': {
+      id: '/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/dental-implants': {
+      id: '/services/dental-implants'
+      path: '/dental-implants'
+      fullPath: '/services/dental-implants'
+      preLoaderRoute: typeof ServicesDentalImplantsRouteImport
       parentRoute: typeof ServicesRoute
     }
     '/services/root-canal': {
@@ -242,11 +242,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesRootCanalRouteImport
       parentRoute: typeof ServicesRoute
     }
-    '/services/dental-implants': {
-      id: '/services/dental-implants'
-      path: '/dental-implants'
-      fullPath: '/services/dental-implants'
-      preLoaderRoute: typeof ServicesDentalImplantsRouteImport
+    '/services/smile-design': {
+      id: '/services/smile-design'
+      path: '/smile-design'
+      fullPath: '/services/smile-design'
+      preLoaderRoute: typeof ServicesSmileDesignRouteImport
       parentRoute: typeof ServicesRoute
     }
   }
