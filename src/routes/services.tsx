@@ -142,7 +142,7 @@ function Services() {
 
       <section className="cream-texture px-6 lg:px-10 py-24">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="font-display text-5xl lg:text-6xl">Not sure which one you need?</h2>
+          <h2 className="font-display text-5xl lg:text-6xl">Not sure which one you <em className="text-primary not-italic">need?</em></h2>
           <p className="mt-6 text-ink/70">That's what the consultation is for. Slide to book — we'll figure it out together.</p>
           <div className="mt-10 max-w-md mx-auto">
             <SlideToConfirm label="Book a consultation" onConfirm={() => (window.location.href = "/contact")} />

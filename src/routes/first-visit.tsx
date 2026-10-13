@@ -74,7 +74,7 @@ function FirstVisit() {
 
       <section className="px-6 lg:px-10 py-24 bg-cream">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="font-display text-5xl lg:text-6xl">Bring what you have,<br />we'll handle the rest.</h2>
+          <h2 className="font-display text-5xl lg:text-6xl">Bring what you have,<br />we'll handle the <em className="text-primary not-italic">rest.</em></h2>
           <p className="mt-6 text-ink/70">Old X-rays, previous treatment records, insurance details — helpful but not required. Show up. We'll take care of the rest.</p>
           <div className="mt-10 max-w-md mx-auto">
             <SlideToConfirm label="Book my first visit" onConfirm={() => (window.location.href = "/contact")} />

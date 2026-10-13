@@ -20,7 +20,7 @@ export function ClinicHero() {
           <p>Dental Den · Hennur, Bengaluru</p>
         </motion.div>
         <div className="clinic-hero-content">
-          <motion.h1 {...reveal(0.25)} className="clinic-hero-title"><span>We design</span><em>your smile,</em><span>not just teeth.</span></motion.h1>
+          <motion.h1 {...reveal(0.25)} className="clinic-hero-title"><span>We design</span><span>your <em>smile</em>,</span><span>not just teeth.</span></motion.h1>
           <motion.div {...reveal(0.5)} className="clinic-hero-actions">
             <p className="clinic-hero-copy">Personal care. Thoughtful dentistry. Dr. Lakshmi Roopesh and her team design smiles around you — with a gentle touch and a little artistry.</p>
             <div className="clinic-hero-book">

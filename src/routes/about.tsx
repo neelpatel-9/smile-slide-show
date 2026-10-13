@@ -54,7 +54,7 @@ function AboutPage() {
             <h1 className="font-display text-[clamp(3rem,8vw,7rem)] leading-[0.95]">
               A quiet<br />
               conviction:<br />
-              <em className="text-primary not-italic">less is more.</em>
+              less is <em className="text-primary not-italic">more.</em>
             </h1>
           </div>
           <div className="lg:col-span-5 space-y-6">
@@ -80,7 +80,7 @@ function AboutPage() {
         <div className="mx-auto max-w-[1400px] grid lg:grid-cols-12 gap-12">
           <div className="lg:col-span-4">
             <p className="text-xs uppercase tracking-[0.3em] text-primary mb-6">— The path</p>
-            <h2 className="font-display text-5xl">Sixteen years,<br />on the record.</h2>
+            <h2 className="font-display text-5xl">Sixteen years,<br />on the <em className="text-primary not-italic">record.</em></h2>
           </div>
           <div className="lg:col-span-8">
             <div className="relative border-l border-ink/15 pl-8 space-y-10">
@@ -109,7 +109,7 @@ function AboutPage() {
       <section className="px-6 lg:px-10 py-24">
         <div className="mx-auto max-w-[1400px]">
           <p className="text-xs uppercase tracking-[0.3em] text-primary mb-6">— Eight core values</p>
-          <h2 className="font-display text-5xl lg:text-7xl max-w-3xl leading-[1]">What we won't compromise on.</h2>
+          <h2 className="font-display text-5xl lg:text-7xl max-w-3xl leading-[1]">What we won't <em className="text-primary not-italic">compromise</em> on.</h2>
           <div className="mt-16 grid md:grid-cols-2 lg:grid-cols-4 gap-4">
             {VALUES.map(([k, v], i) => (
               <motion.div
@@ -132,7 +132,7 @@ function AboutPage() {
       <section className="px-6 lg:px-10 py-24 bg-ink text-ivory">
         <div className="mx-auto max-w-3xl text-center">
           <img src={clinic} alt="Dental Den clinic space" className="rounded-3xl mb-12" loading="lazy" />
-          <h2 className="font-display text-5xl lg:text-6xl">Come see the space that grew up around the philosophy.</h2>
+          <h2 className="font-display text-5xl lg:text-6xl">Come see the space that grew up around the <em className="text-primary not-italic">philosophy.</em></h2>
           <div className="mt-10 max-w-md mx-auto">
             <SlideToConfirm label="Visit the clinic" tone="ivory" onConfirm={() => (window.location.href = "/contact")} />
           </div>

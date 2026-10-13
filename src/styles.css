@@ -65,7 +65,7 @@
   --color-crimson: var(--crimson);
   --color-crimson-soft: var(--crimson-soft);
   --color-slate-warm: var(--slate-warm);
-  --font-display: "Instrument Serif", ui-serif, Georgia, serif;
+  --font-display: "Bodoni Moda", "Instrument Serif", ui-serif, Georgia, serif;
   --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
 }
 
@@ -261,7 +261,7 @@
 .clinic-hero-content { padding-top: 28px; }
 .clinic-hero-title { margin: 0; font-family: var(--font-display); font-size: 96px; line-height: 0.98; letter-spacing: 0; }
 .clinic-hero-title span, .clinic-hero-title em { display: block; }
-.clinic-hero-title em { color: var(--ivory); }
+.clinic-hero-title em { color: var(--hero-accent); font-style: italic; }
 .clinic-hero-actions { display: grid; gap: 24px; margin: 24px 0 32px; }
 .clinic-hero-copy { max-width: 465px; font-size: 15px; line-height: 1.7; color: var(--hero-copy); }
 .clinic-hero-book { width: 320px; max-width: 100%; }
