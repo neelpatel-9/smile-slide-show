@@ -7,6 +7,8 @@ import { ClinicHero } from "@/components/ClinicHero";
 import { SlideToConfirm } from "@/components/SlideToConfirm";
 import { VideoReviewsMarquee, type VideoReview } from "@/components/VideoReviewsMarquee";
 import smileMacro from "@/assets/smile-macro.jpg";
+import beforeImg from "@/assets/before-whitening.png.asset.json";
+import afterImg from "@/assets/after-whitening.png.asset.json";
 import clinic from "@/assets/clinic-interior.jpg";
 import t1 from "@/assets/treatment-1.jpg";
 import t2 from "@/assets/treatment-2.jpg";
@@ -75,37 +77,51 @@ function Counter({ to, suffix = "" }: { to: number; suffix?: string }) {
 
 function BeforeAfter() {
   const [pos, setPos] = useState(50);
+  const dragging = useRef(false);
+  const update = (el: HTMLElement, x: number) => {
+    const r = el.getBoundingClientRect();
+    setPos(Math.max(0, Math.min(100, ((x - r.left) / r.width) * 100)));
+  };
   return (
     <div
       className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl cursor-ew-resize select-none bg-cream"
-      onMouseMove={(e) => {
-        const r = e.currentTarget.getBoundingClientRect();
-        setPos(Math.max(4, Math.min(96, ((e.clientX - r.left) / r.width) * 100)));
+      style={{ touchAction: "pan-y" }}
+      onPointerDown={(e) => {
+        dragging.current = true;
+        e.currentTarget.setPointerCapture(e.pointerId);
+        update(e.currentTarget, e.clientX);
       }}
-      onTouchMove={(e) => {
-        const r = e.currentTarget.getBoundingClientRect();
-        setPos(Math.max(4, Math.min(96, ((e.touches[0].clientX - r.left) / r.width) * 100)));
-      }}
+      onPointerMove={(e) => dragging.current && update(e.currentTarget, e.clientX)}
+      onPointerUp={() => (dragging.current = false)}
+      onPointerCancel={() => (dragging.current = false)}
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-cream to-ink/20 grid place-items-center">
-        <span className="text-ink/50 text-sm tracking-[0.3em] uppercase">Before</span>
-      </div>
-      <div
-        className="absolute inset-0 overflow-hidden"
+      <img src={beforeImg.url} alt="Teeth before whitening" draggable={false} className="absolute inset-0 w-full h-full object-cover pointer-events-none" />
+      <img
+        src={afterImg.url}
+        alt="Teeth after whitening"
+        draggable={false}
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none"
         style={{ clipPath: `inset(0 0 0 ${pos}%)` }}
-      >
-        <img src={smileMacro} alt="After smile design" className="w-full h-full object-cover" />
-        <div className="absolute top-6 right-6 rounded-full bg-ivory/90 px-4 py-1.5 text-[10px] tracking-[0.3em] uppercase">After</div>
-      </div>
-      <div
-        className="absolute top-0 bottom-0 w-px bg-ivory shadow-[0_0_20px_rgba(0,0,0,0.4)]"
-        style={{ left: `${pos}%` }}
-      >
-        <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 h-12 w-12 rounded-full bg-ivory grid place-items-center shadow-xl">
-          <div className="flex gap-0.5">
-            <span className="w-1 h-4 bg-ink/40 rounded-full" />
-            <span className="w-1 h-4 bg-ink/40 rounded-full" />
-          </div>
+      />
+      <div className="absolute top-5 left-5 rounded-full bg-ivory/90 px-4 py-1.5 text-[10px] tracking-[0.3em] uppercase text-ink">Before</div>
+      <div className="absolute top-5 right-5 rounded-full bg-ivory/90 px-4 py-1.5 text-[10px] tracking-[0.3em] uppercase text-ink">After</div>
+      <div className="absolute top-0 bottom-0 w-0.5 bg-ivory shadow-lg pointer-events-none" style={{ left: `${pos}%` }}>
+        <div
+          role="slider"
+          tabIndex={0}
+          aria-label="Before and after comparison"
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-valuenow={Math.round(pos)}
+          onKeyDown={(e) => {
+            if (e.key === "ArrowLeft") setPos((p) => Math.max(0, p - 5));
+            if (e.key === "ArrowRight") setPos((p) => Math.min(100, p + 5));
+          }}
+          className="pointer-events-auto absolute top-1/2 -translate-y-1/2 -translate-x-1/2 h-14 w-14 rounded-full bg-ivory grid place-items-center shadow-xl text-ink focus:outline-none focus:ring-2 focus:ring-primary"
+        >
+          <svg width="26" height="14" viewBox="0 0 26 14" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M7 2L2 7l5 5M19 2l5 5-5 5" />
+          </svg>
         </div>
       </div>
     </div>
