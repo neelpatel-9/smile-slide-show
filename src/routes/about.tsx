@@ -1,17 +1,17 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { PageShell } from "@/components/SiteChrome";
 import { SlideToConfirm } from "@/components/SlideToConfirm";
 import { MagneticFloat } from "@/components/MagneticFloat";
-import drLakshmiAsset from "@/assets/dr-lakshmi.png.asset.json";
-const drLakshmi = drLakshmiAsset.url;
+import dentalDenTeamAsset from "@/assets/dental-den-team.png.asset.json";
+const dentalDenTeam = dentalDenTeamAsset.url;
 import clinic from "@/assets/clinic-interior.jpg";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { property: "og:image", content: drLakshmi },
-      { name: "twitter:image", content: drLakshmi },
+      { property: "og:image", content: dentalDenTeam },
+      { name: "twitter:image", content: dentalDenTeam },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { title: "About Dr. Lakshmi — Dental Den, Hennur" },
@@ -71,7 +71,7 @@ function AboutPage() {
       <section className="px-6 lg:px-10 pb-24">
         <div className="mx-auto max-w-[1400px]">
           <MagneticFloat strength={24}>
-            <img src={drLakshmi} alt="Dr. Lakshmi Roopesh, Founder of Dental Den, Hennur Bengaluru" className="w-full aspect-[16/9] object-cover rounded-[2rem] shadow-[0_40px_80px_-40px_rgba(0,0,0,0.35)]" loading="lazy" />
+            <img src={dentalDenTeam} alt="The Dental Den team at the Hennur clinic" className="w-full aspect-[16/9] object-cover rounded-[2rem] shadow-[0_40px_80px_-40px_rgba(0,0,0,0.35)]" loading="lazy" />
           </MagneticFloat>
         </div>
       </section>
