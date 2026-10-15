@@ -1,11 +1,8 @@
 import { motion, useReducedMotion } from "framer-motion";
-import { useNavigate } from "@tanstack/react-router";
-import { SlideToConfirm } from "@/components/SlideToConfirm";
 import operatory from "@/assets/treatment-2.jpg";
 
 export function ClinicHero() {
   const reduceMotion = useReducedMotion();
-  const navigate = useNavigate();
   const reveal = (delay: number) => ({
     initial: { opacity: reduceMotion ? 1 : 0, y: reduceMotion ? 0 : 16 },
     animate: { opacity: 1, y: 0 },
@@ -23,9 +20,6 @@ export function ClinicHero() {
           <motion.h1 {...reveal(0.25)} className="clinic-hero-title"><span>We design</span><span>your <em>smile</em>,</span><span>not just teeth.</span></motion.h1>
           <motion.div {...reveal(0.5)} className="clinic-hero-actions">
             <p className="clinic-hero-copy">Personal care. Thoughtful dentistry. Dr. Lakshmi Roopesh and her team design smiles around you — with a gentle touch and a little artistry.</p>
-            <div className="clinic-hero-book">
-              <SlideToConfirm label="Slide to book" confirmedLabel="Opening booking" tone="cinematic" onConfirm={() => navigate({ to: "/contact" })} />
-            </div>
           </motion.div>
         </div>
         <motion.p {...reveal(0.65)} className="clinic-hero-caption">Est. 2010 · Dr. Lakshmi Roopesh</motion.p>
