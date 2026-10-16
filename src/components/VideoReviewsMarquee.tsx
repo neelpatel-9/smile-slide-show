@@ -4,10 +4,10 @@ import { Play, X, Star, Quote } from "lucide-react";
 
 export interface VideoReview {
   name: string;
-  city: string;
+  city?: string;
   poster: string;
   videoSrc?: string;
-  quote: string;
+  quote?: string;
   treatment: string;
   rating?: number;
 }
@@ -138,15 +138,17 @@ export function VideoReviewsMarquee({ items }: { items: VideoReview[] }) {
                 <div className="flex items-start justify-between gap-4">
                   <div>
                     <p className="font-display text-2xl leading-tight">{items[active].name}</p>
-                    <p className="text-xs tracking-[0.2em] uppercase text-ink/50 mt-1">
-                      {items[active].city}
-                    </p>
+                    {items[active].city && (
+                      <p className="text-xs tracking-[0.2em] uppercase text-ink/50 mt-1">
+                        {items[active].city}
+                      </p>
+                    )}
                   </div>
                   <span className="rounded-full bg-primary/10 text-primary px-3 py-1 text-[10px] uppercase tracking-[0.25em]">
                     {items[active].treatment}
                   </span>
                 </div>
-                {items[active].videoSrc && (
+                {items[active].videoSrc && items[active].quote && (
                   <p className="mt-4 text-sm text-ink/70 leading-relaxed">
                     &ldquo;{items[active].quote}&rdquo;
                   </p>
