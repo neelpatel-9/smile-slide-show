@@ -15,6 +15,18 @@ import t2 from "@/assets/treatment-2.jpg";
 import t3 from "@/assets/treatment-3.jpg";
 import t4 from "@/assets/treatment-4.jpg";
 import before1 from "@/assets/before-1.jpg";
+import patientStory01Video from "@/assets/patient-story-01.mp4.asset.json";
+import patientStory01Poster from "@/assets/patient-story-01.jpg.asset.json";
+import patientStory02Video from "@/assets/patient-story-02.mp4.asset.json";
+import patientStory02Poster from "@/assets/patient-story-02.jpg.asset.json";
+import patientStory03Video from "@/assets/patient-story-03.mp4.asset.json";
+import patientStory03Poster from "@/assets/patient-story-03.jpg.asset.json";
+import patientStory04Video from "@/assets/patient-story-04.mp4.asset.json";
+import patientStory04Poster from "@/assets/patient-story-04.jpg.asset.json";
+import patientStory05Video from "@/assets/patient-story-05.mp4.asset.json";
+import patientStory05Poster from "@/assets/patient-story-05.jpg.asset.json";
+import patientStory06Video from "@/assets/patient-story-06.mp4.asset.json";
+import patientStory06Poster from "@/assets/patient-story-06.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({ meta: [
@@ -37,13 +49,12 @@ const galleryHome = [
 ];
 
 const VIDEO_REVIEWS: VideoReview[] = [
-  { name: "Ananya S.", city: "Indiranagar", poster: smileMacro, treatment: "Smile Design", rating: 5, quote: "Dr. Lakshmi and her team made my smile design journey feel curated, not clinical. My veneers look exactly like the mock-up promised." },
-  { name: "Rahul M.", city: "HBR Layout", poster: t1, treatment: "Implants", rating: 5, quote: "Two implants, zero pain. The microscope work is on another level — you can literally feel the precision." },
-  { name: "Joanna K.", city: "Warsaw", poster: t2, treatment: "Veneers", rating: 5, quote: "Flew from Poland for veneers on a recommendation. Worth every kilometre. Warm, honest, world-class." },
-  { name: "Priya N.", city: "Whitefield", poster: clinic, treatment: "Consultation", rating: 5, quote: "It felt like a hotel, not a hospital. The team remembers your name and treatment plans come with real options." },
-  { name: "Kiran R.", city: "Hennur", poster: t3, treatment: "Root Canal", rating: 5, quote: "Root canal I had been dreading for a year. Done in one visit, zero pain. I ate biryani that evening." },
-  { name: "Divya S.", city: "Kalyan Nagar", poster: t4, treatment: "Pediatric", rating: 5, quote: "Took my 6-year-old for his first visit. They turned it into a story he wanted to tell." },
-  { name: "Meera G.", city: "Sarjapur", poster: before1, treatment: "Orthodontics", rating: 5, quote: "Aligners journey took 14 months. Every check-in was on time. My results beat the initial projection." },
+  { name: "Patient story 01", poster: patientStory01Poster.url, videoSrc: patientStory01Video.url, treatment: "Real patient story" },
+  { name: "Patient story 02", poster: patientStory02Poster.url, videoSrc: patientStory02Video.url, treatment: "Real patient story" },
+  { name: "Patient story 03", poster: patientStory03Poster.url, videoSrc: patientStory03Video.url, treatment: "Real patient story" },
+  { name: "Patient story 04", poster: patientStory04Poster.url, videoSrc: patientStory04Video.url, treatment: "Real patient story" },
+  { name: "Patient story 05", poster: patientStory05Poster.url, videoSrc: patientStory05Video.url, treatment: "Real patient story" },
+  { name: "Patient story 06", poster: patientStory06Poster.url, videoSrc: patientStory06Video.url, treatment: "Real patient story" },
 ];
 
 
