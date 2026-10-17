@@ -2,13 +2,14 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageShell } from "@/components/SiteChrome";
 import { SlideToConfirm } from "@/components/SlideToConfirm";
 import { ExpandableServiceCard, type ServiceCardData } from "@/components/ExpandableServiceCard";
-import smileMacro from "@/assets/smile-macro.jpg";
-import clinic from "@/assets/clinic-interior.jpg";
-import t1 from "@/assets/treatment-1.jpg";
-import t2 from "@/assets/treatment-2.jpg";
-import t3 from "@/assets/treatment-3.jpg";
-import t4 from "@/assets/treatment-4.jpg";
-import before1 from "@/assets/before-1.jpg";
+import casePhoto01 from "@/assets/service-case-01.jpg.asset.json";
+import casePhoto02 from "@/assets/service-case-02.jpg.asset.json";
+import casePhoto03 from "@/assets/service-case-03.jpg.asset.json";
+import casePhoto04 from "@/assets/service-case-04.jpg.asset.json";
+import casePhoto05 from "@/assets/service-case-05.jpg.asset.json";
+import casePhoto06 from "@/assets/service-case-06.jpg.asset.json";
+import beforeWhitening from "@/assets/before-whitening.png.asset.json";
+import afterWhitening from "@/assets/after-whitening.png.asset.json";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -25,20 +26,20 @@ export const Route = createFileRoute("/services")({
 });
 
 const gallery = [
-  { type: "image" as const, src: t1, caption: "After · Smile Design" },
-  { type: "image" as const, src: t2, caption: "Our Operatory" },
-  { type: "image" as const, src: t3, caption: "Precision Work" },
-  { type: "image" as const, src: t4, caption: "Digital 3D Scan" },
-  { type: "image" as const, src: smileMacro, caption: "Final Result" },
-  { type: "image" as const, src: clinic, caption: "Clinic Interior" },
+  { type: "image" as const, src: casePhoto01.url, caption: "Patient case · Before & After" },
+  { type: "image" as const, src: casePhoto02.url, caption: "Patient case · Before & After" },
+  { type: "image" as const, src: casePhoto03.url, caption: "Patient case · Before & After" },
+  { type: "image" as const, src: casePhoto04.url, caption: "Patient case · Before & After" },
+  { type: "image" as const, src: casePhoto05.url, caption: "Patient case · Before & After" },
+  { type: "image" as const, src: casePhoto06.url, caption: "Patient case · Before & After" },
 ];
 
-const makeCases = (baseGallery: typeof gallery, before: string, after: string) => [
-  { title: "Case 01", note: "Initial assessment & digital planning", gallery: [baseGallery[3], baseGallery[1]], before, after },
-  { title: "Case 02", note: "Treatment in progress", gallery: [baseGallery[2], baseGallery[3]], before, after },
-  { title: "Case 03", note: "Precision finishing", gallery: [baseGallery[0], baseGallery[4]], before, after },
-  { title: "Case 04", note: "Final result & aftercare", gallery: [baseGallery[4], baseGallery[5]], before, after },
-  { title: "Case 05", note: "Long-term maintenance review", gallery: [baseGallery[1], baseGallery[0]], before, after },
+const makeCases = (baseGallery: typeof gallery) => [
+  { title: "Case 01", note: "Patient treatment photographs", gallery: [baseGallery[0], baseGallery[1]], before: beforeWhitening.url, after: afterWhitening.url },
+  { title: "Case 02", note: "Patient treatment photographs", gallery: [baseGallery[1], baseGallery[2]], before: beforeWhitening.url, after: afterWhitening.url },
+  { title: "Case 03", note: "Patient treatment photographs", gallery: [baseGallery[2], baseGallery[3]], before: beforeWhitening.url, after: afterWhitening.url },
+  { title: "Case 04", note: "Patient treatment photographs", gallery: [baseGallery[4], baseGallery[5]], before: beforeWhitening.url, after: afterWhitening.url },
+  { title: "Case 05", note: "Patient treatment photographs", gallery: [baseGallery[5], baseGallery[0]], before: beforeWhitening.url, after: afterWhitening.url },
 ];
 
 const SERVICES: ServiceCardData[] = [
@@ -49,8 +50,8 @@ const SERVICES: ServiceCardData[] = [
     long: "Every smile is designed to your face — not a template. We start with a digital mock-up, then hand-layer veneers, whiten, and gently sculpt gum lines until the smile feels unmistakably yours.",
     price: "From ₹18,000/tooth",
     color: "bg-[oklch(0.96_0.02_50)]",
-    image: smileMacro,
-    cases: makeCases(gallery, before1, smileMacro),
+    image: casePhoto01.url,
+    cases: makeCases(gallery),
   },
   {
     name: "Dental Implants",
@@ -59,8 +60,8 @@ const SERVICES: ServiceCardData[] = [
     long: "Fellowship-trained on both Osstem and Nobel Biocare systems and guided by 3D CT planning — implants that look, chew and feel like the tooth you were born with.",
     price: "From ₹35,000",
     color: "bg-[oklch(0.94_0.03_35)]",
-    image: t1,
-    cases: makeCases([gallery[3], gallery[1], gallery[2], gallery[0], gallery[4], gallery[5]], before1, t1),
+    image: casePhoto02.url,
+    cases: makeCases([gallery[1], gallery[2], gallery[3], gallery[4], gallery[5], gallery[0]]),
   },
   {
     name: "Root Canal",
@@ -69,8 +70,8 @@ const SERVICES: ServiceCardData[] = [
     long: "A surgical microscope, a single practitioner, and modern anaesthetics — root canals that finish in one or two visits with almost no post-op pain.",
     price: "From ₹6,500",
     color: "bg-[oklch(0.95_0.02_20)]",
-    image: t3,
-    cases: makeCases([gallery[2], gallery[3], gallery[1], gallery[0], gallery[4], gallery[5]], before1, smileMacro),
+    image: casePhoto03.url,
+    cases: makeCases([gallery[2], gallery[3], gallery[4], gallery[5], gallery[0], gallery[1]]),
   },
   {
     name: "Orthodontics",
@@ -79,8 +80,8 @@ const SERVICES: ServiceCardData[] = [
     long: "Clear aligners for adults who don't want anyone to know, ceramic for teens who want it subtle, and classic metal when speed matters most.",
     price: "From ₹80,000",
     color: "bg-[oklch(0.96_0.02_75)]",
-    image: t4,
-    cases: makeCases([gallery[3], gallery[0], gallery[4], gallery[1], gallery[2], gallery[5]], before1, t1),
+    image: casePhoto04.url,
+    cases: makeCases([gallery[3], gallery[4], gallery[5], gallery[0], gallery[1], gallery[2]]),
   },
   {
     name: "Laser Dentistry",
@@ -89,8 +90,8 @@ const SERVICES: ServiceCardData[] = [
     long: "Where possible, we swap scalpels for lasers — less bleeding, less swelling, dramatically faster healing for gum contouring and soft-tissue work.",
     price: "From ₹3,500",
     color: "bg-[oklch(0.95_0.02_10)]",
-    image: t2,
-    cases: makeCases([gallery[2], gallery[1], gallery[0], gallery[3], gallery[4], gallery[5]], before1, smileMacro),
+    image: casePhoto05.url,
+    cases: makeCases([gallery[4], gallery[5], gallery[0], gallery[1], gallery[2], gallery[3]]),
   },
   {
     name: "Pediatric Care",
@@ -99,8 +100,8 @@ const SERVICES: ServiceCardData[] = [
     long: "First visits designed as an experience, not a procedure — so your child grows up thinking dental chairs are friendly places.",
     price: "From ₹1,500",
     color: "bg-[oklch(0.96_0.02_90)]",
-    image: clinic,
-    cases: makeCases([gallery[1], gallery[0], gallery[4], gallery[2], gallery[3], gallery[5]], before1, t1),
+    image: casePhoto06.url,
+    cases: makeCases([gallery[5], gallery[0], gallery[1], gallery[2], gallery[3], gallery[4]]),
   },
 ];
 

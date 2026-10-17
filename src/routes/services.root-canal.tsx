@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ServicePage } from "@/components/ServicePage";
-import clinic from "@/assets/clinic-interior.jpg";
+import casePhoto from "@/assets/service-case-03.jpg.asset.json";
 
 export const Route = createFileRoute("/services/root-canal")({
   head: () => ({
@@ -20,7 +20,7 @@ export const Route = createFileRoute("/services/root-canal")({
         title: "The gentlest way to",
         emphasis: "keep your tooth.",
         intro: "The old story about root canals being painful ended when surgical microscopes arrived. Dr. Lakshmi trained under Dr. Vivek Hegde — the country's foremost microscopic endodontist — and delivers most cases in a single unhurried visit.",
-        image: clinic,
+        image: casePhoto.url,
         price: "₹6,500",
         benefits: [
           { k: "Under the microscope", v: "Every canal is seen, measured and cleaned at 25x magnification." },
