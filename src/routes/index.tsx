@@ -15,17 +15,17 @@ import t2 from "@/assets/treatment-2.jpg";
 import t3 from "@/assets/treatment-3.jpg";
 import t4 from "@/assets/treatment-4.jpg";
 import before1 from "@/assets/before-1.jpg";
-import patientStory01Video from "@/assets/patient-story-01.mp4.asset.json";
+import patientStory01Video from "@/assets/patient-story-01.webm.asset.json";
 import patientStory01Poster from "@/assets/patient-story-01.jpg.asset.json";
-import patientStory02Video from "@/assets/patient-story-02.mp4.asset.json";
+import patientStory02Video from "@/assets/patient-story-02.webm.asset.json";
 import patientStory02Poster from "@/assets/patient-story-02.jpg.asset.json";
-import patientStory03Video from "@/assets/patient-story-03.mp4.asset.json";
+import patientStory03Video from "@/assets/patient-story-03.webm.asset.json";
 import patientStory03Poster from "@/assets/patient-story-03.jpg.asset.json";
-import patientStory04Video from "@/assets/patient-story-04.mp4.asset.json";
+import patientStory04Video from "@/assets/patient-story-04.webm.asset.json";
 import patientStory04Poster from "@/assets/patient-story-04.jpg.asset.json";
-import patientStory05Video from "@/assets/patient-story-05.mp4.asset.json";
+import patientStory05Video from "@/assets/patient-story-05.webm.asset.json";
 import patientStory05Poster from "@/assets/patient-story-05.jpg.asset.json";
-import patientStory06Video from "@/assets/patient-story-06.mp4.asset.json";
+import patientStory06Video from "@/assets/patient-story-06.webm.asset.json";
 import patientStory06Poster from "@/assets/patient-story-06.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
