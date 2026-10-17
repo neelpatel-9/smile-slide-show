@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ServicePage } from "@/components/ServicePage";
-import clinic from "@/assets/clinic-interior.jpg";
+import casePhoto from "@/assets/service-case-02.jpg.asset.json";
 
 export const Route = createFileRoute("/services/dental-implants")({
   head: () => ({
@@ -20,7 +20,7 @@ export const Route = createFileRoute("/services/dental-implants")({
         title: "Implants that",
         emphasis: "feel like yours.",
         intro: "Dr. Lakshmi holds fellowships from both Osstem and Nobel Biocare — trained by the engineers who designed the systems. Every case is planned in 3D before you sit down, and delivered under guided precision.",
-        image: clinic,
+        image: casePhoto.url,
         price: "₹35,000",
         benefits: [
           { k: "3D CT planning", v: "Every implant simulated in your jaw before the day of surgery." },

@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ServicePage } from "@/components/ServicePage";
-import smile from "@/assets/smile-macro.jpg";
+import casePhoto from "@/assets/service-case-01.jpg.asset.json";
 
 export const Route = createFileRoute("/services/smile-design")({
   head: () => ({
@@ -20,7 +20,7 @@ export const Route = createFileRoute("/services/smile-design")({
         title: "Smile Design,",
         emphasis: "not tooth repair.",
         intro: "We start with your face — the way you laugh, the way light falls on your teeth — then design the smile that already belongs there. Every plan is previewed digitally before a single tooth is touched.",
-        image: smile,
+        image: casePhoto.url,
         price: "₹18,000/tooth",
         benefits: [
           { k: "Digital preview", v: "See your outcome as a mock-up before any treatment begins." },
